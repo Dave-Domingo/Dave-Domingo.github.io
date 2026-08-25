@@ -7,8 +7,8 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/tokens.css?v=4">
     <link rel="stylesheet" href="css/base.css?v=3">
-    <link rel="stylesheet" href="css/shared.css?v=1">
-    <link rel="stylesheet" href="css/research-framework.css?v=8">
+    <link rel="stylesheet" href="css/shared.css?v=2">
+    <link rel="stylesheet" href="css/research-framework.css?v=10">
   </head>
   <body>
 
@@ -302,11 +302,195 @@
           <div class="eyebrow">Representative studies</div>
           <h2>Three different problems explored</h2>
         </div>
-        <div class="pending-block">
-          <p>This section will hold three real studies once their evidence packages are translated into portfolio-ready form. They span this portfolio's own architecture research, a two-stage market study (an industry-wide website-agency report deepened against one real operating stakeholder, anonymized), and an enterprise agent-governance study. Each will show its question, method, evidence streams, one real contradiction or refinement, the resulting artifact, and what it enabled.</p>
+        <div class="view-all-row">
+          <button class="view-all-btn" onclick="openViewAll()">View as grid</button>
+        </div>
+        <div class="carousel-wrap" id="carousel-wrap">
+          <div class="carousel-fade left"></div>
+          <div class="carousel-fade right"></div>
+          <button class="carousel-arrow prev" onclick="scrollCarousel(-1)" disabled aria-label="Scroll left">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="carousel-arrow next" onclick="scrollCarousel(1)" aria-label="Scroll right">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        <div class="carousel" id="top-carousel">
+
+          <div class="diagram-card">
+            <h3>Portfolio Architecture Research</h3>
+            <div class="study-status-row">
+              <div class="state-badge">Research complete</div>
+              <p class="study-status-note">Already governing this site's structure.</p>
+            </div>
+            <p class="card-desc">Researched and designed the evidence architecture this portfolio itself runs on.</p>
+            <div class="study-stats">
+              <div class="study-stat"><span class="stat-num">18</span><span class="stat-label">portfolios sampled</span></div>
+              <div class="study-stat"><span class="stat-num">3</span><span class="stat-label">system taxonomy</span></div>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-study-portfolio'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <div class="diagram-card">
+            <h3>AI Value Realization in Website Design Agencies</h3>
+            <div class="study-status-row">
+              <div class="state-badge">Research-centered strategy case</div>
+              <p class="study-status-note">No implementation or measured outcome yet.</p>
+            </div>
+            <p class="card-desc">Studied where AI creates or erodes economic value in website design agencies, then deepened the same research against one real agency's own numbers.</p>
+            <div class="study-stats">
+              <div class="study-stat"><span class="stat-num">18</span><span class="stat-label">sources</span></div>
+              <div class="study-stat"><span class="stat-num">28</span><span class="stat-label">evidence records</span></div>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-study-agency'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <div class="diagram-card">
+            <h3>Enterprise Agent Governance</h3>
+            <div class="study-status-row">
+              <div class="state-badge">Research package complete</div>
+              <p class="study-status-note">Implementation not yet demonstrated.</p>
+            </div>
+            <p class="card-desc">Researched how enterprises should govern AI agent authority across every channel an agent can actually act through, beyond any single protocol.</p>
+            <div class="study-stats">
+              <div class="study-stat"><span class="stat-num">35</span><span class="stat-label">source evidence backbone</span></div>
+              <div class="study-stat"><span class="stat-num">15</span><span class="stat-label">claim confidence map</span></div>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-study-governance'), this)">Expand for details &rarr;</button>
+          </div>
+
+        </div>
         </div>
       </div>
     </section>
+
+    <!-- View all overlay -->
+    <div class="view-all-overlay" id="view-all-overlay" onclick="if(event.target===this)closeViewAll()">
+      <div class="view-all-inner">
+        <div class="view-all-header">
+          <h3>Grid view</h3>
+          <button class="overlay-close" aria-label="Close" onclick="closeViewAll()">&times;</button>
+        </div>
+        <div class="view-all-grid" id="view-all-grid"></div>
+      </div>
+    </div>
+
+    <!-- Expand overlays -->
+    <div class="overlay-backdrop" id="ov-study-portfolio" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card wide"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-study-portfolio'))">&times;</button>
+        <h3>Portfolio Architecture Research</h3>
+        <div class="study-status-row">
+          <div class="state-badge">Research complete</div>
+          <p class="study-status-note">Already governing this site's structure.</p>
+        </div>
+        <p class="study-hero">Researched and designed the evidence architecture this portfolio itself runs on.</p>
+        <div class="study-stats">
+          <div class="study-stat"><span class="stat-num">18</span><span class="stat-label">portfolios sampled</span></div>
+          <div class="study-stat"><span class="stat-num">3</span><span class="stat-label">system taxonomy</span></div>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Question</div>
+          <p>How should an Applied AI portfolio present a workflow system, a decision system, and a research system as one coherent identity without overstating what any of them actually prove?</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Method</div>
+          <p>Design Science Research Methodology combined with structured evidence mapping, current Applied AI role-market analysis, and a purposive sample of 18 public portfolios.</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Evidence streams</div>
+          <p>Hiring and work-sample research, ePortfolio studies, information-architecture research, current job postings from OpenAI, Anthropic, and AWS, and this project's own internal artifacts.</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Contradiction &amp; repair</div>
+          <p>The first framing split projects into code and non-code, describing what two of them lacked instead of what they actually demonstrated. The repair reorganized the taxonomy around the job each system performs: workflow, decision, or research.</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Resulting artifact</div>
+          <p>The architecture guide, evidence register, and case-page structure this site actually uses.</p>
+        </div>
+        <div class="study-enabled">
+          <div class="se-label">What this enabled</div>
+          <p>Set the homepage layout, the shared case-page spine, and the evidence-status labeling convention used on every page here, and identified which functional areas to include based on industry best practices and other viable insights the research surfaced.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay-backdrop" id="ov-study-agency" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card wide"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-study-agency'))">&times;</button>
+        <h3>AI Value Realization in Website Design Agencies</h3>
+        <div class="study-status-row">
+          <div class="state-badge">Research-centered strategy case</div>
+          <p class="study-status-note">No implementation or measured outcome yet.</p>
+        </div>
+        <p class="study-hero">Studied where AI creates or erodes economic value in website design agencies, then deepened the same research against one real agency's own numbers.</p>
+        <div class="study-stats">
+          <div class="study-stat"><span class="stat-num">18</span><span class="stat-label">sources</span></div>
+          <div class="study-stat"><span class="stat-num">28</span><span class="stat-label">evidence records</span></div>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Question</div>
+          <p>Where does AI-driven efficiency in a website design agency actually go, and under what conditions can an agency keep it instead of passing it straight to clients?</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Method</div>
+          <p>A mixed-evidence research pass with source-quality grading, claim-to-evidence mapping, and horizon modeling for the industry as a whole, then a second pass applying the same discipline to one real agency's own support-hour and project-margin data, with the company and its personnel anonymized.</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Evidence streams</div>
+          <p>Direct agency surveys, client-side demand research, platform telemetry, labor-market data, and technical capability benchmarks, plus one real operator's own support and project data for the deepening.</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Contradiction &amp; repair</div>
+          <p>The default assumption was that AI-driven time savings should raise agency margin. The industry-level research found productivity gains widely coexisting with weak monetization, and the agency-specific deepening showed why: an hourly support model passes freed-up time straight to the client as extra work instead of turning it into agency margin.</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Resulting artifact</div>
+          <p>A 28-page executive research report with an evidence backbone and a 2029 horizon model, deepened into an operator-specific value-flow model with commercialization gates.</p>
+        </div>
+        <div class="study-enabled">
+          <div class="se-label">What this enabled</div>
+          <p>Gave the operator a five-year strategic positioning basis specific to its own numbers and constraints. It does not replace a mission-specific analysis, and it does not select which course of action the company should take. The analysis also doesn't have the company's complete internal data, ongoing follow-on research, or a maintained database behind it, which limits how far the five-year positioning can be trusted without further work.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay-backdrop" id="ov-study-governance" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card wide"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-study-governance'))">&times;</button>
+        <h3>Enterprise Agent Governance</h3>
+        <div class="study-status-row">
+          <div class="state-badge">Research package complete</div>
+          <p class="study-status-note">Implementation not yet demonstrated.</p>
+        </div>
+        <p class="study-hero">Researched how enterprises should govern AI agent authority across every channel an agent can actually act through, beyond any single protocol.</p>
+        <div class="study-stats">
+          <div class="study-stat"><span class="stat-num">35</span><span class="stat-label">source evidence backbone</span></div>
+          <div class="study-stat"><span class="stat-num">15</span><span class="stat-label">claim confidence map</span></div>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Question</div>
+          <p>How should enterprises govern AI agent authority across MCP, CLI execution, Skills, and direct generated code before scaling agent use?</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Method</div>
+          <p>A six-step evidence-backed architecture synthesis built specifically to test its own starting assumption, using a 35-source evidence backbone and a 15-claim confidence map.</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Evidence streams</div>
+          <p>Standards and open-project sources, primary vendor technical documentation, empirical research, and security guidance.</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Contradiction &amp; repair</div>
+          <p>The project began from the assumption that MCP was becoming the primary governance surface. The evidence showed agents routinely acting through channels that bypass MCP entirely, so the premise was narrowed to the actual channel-agnostic authority surface.</p>
+        </div>
+        <div class="study-field">
+          <div class="study-field-label">Resulting artifact</div>
+          <p>A protocol-agnostic agent control-plane reference architecture and a security-signoff model.</p>
+        </div>
+        <div class="study-enabled">
+          <div class="se-label">What this enabled</div>
+          <p>Identifies the highest-leverage governance opportunities in applied AI, the kind that could guide project selection and cross-domain functional integration if this were applied at enterprise scale.</p>
+        </div>
+      </div>
+    </div>
 
     <!-- I. Outcome & limits (pending) -->
     <section class="section" id="outcome">
@@ -316,10 +500,11 @@
           <h2>What this proves, and what it doesn't yet</h2>
         </div>
         <div class="limits-block">
-          <p>This research framework compiles findings through a transparent method, built specifically to inform strategy development and planning. It runs through intake, methodology gate, evidence discipline, convergence, and human review, and it has been refined across multiple research efforts. The framework is inherently limited by the nature of open-source information, and it can be further refined through individual use once hard data becomes available and connected. I'm also refining small details in the final PDF format, slowly minimizing the routine edits that can be defined before the process even begins. Any research here should be read as signal. Actual business decisions or assumptions still need multiple sources behind them before they're considered confident.</p>
+          <p>This research framework compiles findings through a transparent method, built specifically to inform strategy development and planning. It runs through intake, methodology gate, evidence discipline, convergence, and human review, and it has now been refined across the three studies above.</p>
+          <p>The framework is inherently limited by the nature of open-source information, and it can be further refined through individual use once hard data becomes available and connected. I'm also refining small details in the final PDF format, slowly minimizing the routine edits that can be defined before the process even begins. Any research here should be read as signal. Actual business decisions or assumptions still need multiple sources behind them before they're considered confident.</p>
         </div>
         <div class="inspect-links">
-          Framework document and evidence-register excerpts are coming to GitHub once the representative studies are finalized.
+          Framework document and evidence-register excerpts are coming to GitHub soon.
         </div>
       </div>
     </section>
@@ -340,6 +525,7 @@
       </div>
     </footer>
 
+    <script src="js/carousel.js"></script>
     <script>
       function toggleWorkDropdown(btn) {
         var menu = btn.nextElementSibling;

@@ -407,3 +407,279 @@ button.term-pill:hover {
 .inspect-links a {
   color: var(--accent);
 }
+
+/* Card carousel + expand overlay (job-pipeline.html's diagram carousel and
+   the research page's study cards both use this exact markup pattern —
+   see STYLE_GUIDE.md). A page includes this only if it has a carousel, and
+   loads js/carousel.js for the interaction behavior. */
+
+.view-all-row {
+  text-align: center;
+  margin-bottom: var(--space-4);
+}
+
+.view-all-btn {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--code-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 6px 16px;
+  cursor: pointer;
+}
+
+.carousel-wrap {
+  position: relative;
+  margin-bottom: var(--space-6);
+}
+
+.carousel {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: var(--space-2) 4px var(--space-2);
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.view-all-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 24, 21, 0.55);
+  z-index: 150;
+  padding: var(--space-6) var(--space-4);
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.view-all-overlay.open {
+  display: block;
+}
+
+.view-all-overlay.visible {
+  opacity: 1;
+}
+
+.view-all-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: 0 var(--space-6) var(--space-6);
+  position: relative;
+  transform: scale(0.97);
+  transition: transform var(--transition-base);
+}
+
+.view-all-overlay.visible .view-all-inner {
+  transform: scale(1);
+}
+
+.view-all-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-6);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  padding: var(--space-6) 0 var(--space-3);
+  z-index: 5;
+}
+
+.view-all-header h3 {
+  margin: 0;
+}
+
+.view-all-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-4);
+}
+
+.view-all-grid .diagram-card {
+  flex: none;
+  width: 100%;
+}
+
+.carousel-fade {
+  position: absolute;
+  top: 0;
+  bottom: var(--space-2);
+  width: 64px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.carousel-fade.visible {
+  opacity: 1;
+}
+
+.carousel-fade.left {
+  left: 0;
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+
+.carousel-fade.right {
+  right: 0;
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+
+.section-tint .carousel-fade.left {
+  background: linear-gradient(to right, var(--surface), transparent);
+}
+
+.section-tint .carousel-fade.right {
+  background: linear-gradient(to left, var(--surface), transparent);
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--transition-fast);
+}
+
+.carousel-arrow.prev { left: -14px; }
+.carousel-arrow.next { right: -14px; }
+
+.carousel-arrow[disabled] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.carousel-arrow svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-primary);
+}
+
+@media (max-width: 640px) {
+  .carousel-arrow { display: none; }
+}
+
+.diagram-card {
+  flex: 0 0 var(--card-width);
+  scroll-snap-align: start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+
+.diagram-card h3 {
+  font-size: 17px;
+  margin: 0 0 6px;
+  min-height: 42px;
+}
+
+.diagram-card .card-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 var(--space-3);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(1.5em * 3);
+}
+
+.expand-btn {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-top: auto;
+  text-align: left;
+}
+
+.overlay-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 24, 21, 0.55);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.overlay-backdrop.open {
+  display: flex;
+}
+
+.overlay-backdrop.visible {
+  opacity: 1;
+}
+
+.overlay-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  max-width: 460px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.97);
+  transition: transform var(--transition-base);
+}
+
+.overlay-card.wide {
+  max-width: 640px;
+}
+
+.overlay-backdrop.visible .overlay-card {
+  transform: scale(1);
+}
+
+.overlay-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--code-bg);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.overlay-card p {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
