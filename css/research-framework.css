@@ -13,6 +13,72 @@
   margin: 0 auto var(--space-5);
 }
 
+/* Operating-model diagram */
+
+.om-diagram {
+  margin: 0;
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.om-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--text-primary);
+}
+
+.om-diagram figcaption {
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin-top: var(--space-3);
+}
+
+.om-node-box {
+  fill: var(--surface);
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+
+.om-node-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  fill: currentColor;
+}
+
+.om-loop-zone {
+  fill: var(--code-bg);
+  stroke: none;
+}
+
+.om-flow-line {
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.om-loop-line {
+  stroke: var(--accent);
+  stroke-width: 1.75;
+  fill: none;
+}
+
+.om-loop-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  fill: var(--accent);
+  font-weight: 500;
+}
+
+.om-plain-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--text-secondary);
+}
+
 /* Failure-mode grid */
 
 .failure-grid {

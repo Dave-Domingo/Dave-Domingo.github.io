@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/tokens.css?v=4">
     <link rel="stylesheet" href="css/base.css?v=3">
     <link rel="stylesheet" href="css/shared.css?v=1">
-    <link rel="stylesheet" href="css/research-framework.css?v=4">
+    <link rel="stylesheet" href="css/research-framework.css?v=8">
   </head>
   <body>
 
@@ -37,16 +37,16 @@
       <div class="container">
         <div class="eyebrow">Research-to-Artifact System</div>
         <h1>A repeatable process for turning ambiguous questions into decision-ready evidence.</h1>
-        <div class="status-line">Reusable framework, implemented and refined across multiple real research efforts. The evidence process itself is demonstrated here; downstream decision outcomes vary by study and are called out individually below.</div>
+        <div class="status-line">Reusable framework, implemented and refined across multiple research efforts. A methodical research approach for business problems and personal questions alike, built to surface curated evidence from credible sources.</div>
         <div class="btn-row">
           <a href="#operating-model" class="btn-pill btn-pill-primary">View the operating model</a>
           <a href="#studies" class="btn-pill btn-pill-secondary">Representative studies</a>
         </div>
         <div class="at-a-glance-label">At a glance</div>
         <div class="glance-row">
-          <div class="glance-card"><p>A 10-stage research lifecycle, from problem definition through quality audit to final delivery &mdash; skipping a stage requires documenting why, not just moving faster.</p></div>
+          <div class="glance-card"><p>A 10-stage research lifecycle, from problem definition through quality audit to final delivery. Skipping a stage requires documenting why.</p></div>
           <div class="glance-card"><p>A 7-level decision authority hierarchy resolves every judgment call, from explicit instructions down to a bounded, documented assumption.</p></div>
-          <div class="glance-card"><p>The convergence loop that produced this page ran 13 real rounds before a confirmation audit found nothing left to fix.</p></div>
+          <div class="glance-card"><p>The convergence loop that produced this page ran 13 rounds before a confirmation audit found nothing left to fix.</p></div>
         </div>
       </div>
     </section>
@@ -74,21 +74,58 @@
       <div class="container">
         <div class="section-heading">
           <div class="eyebrow">Operating model</div>
-          <h2>The loop this process actually runs</h2>
+          <h2>The process</h2>
         </div>
-        <div class="pill-flow">
-          <div class="pill-flow-step">Intake &amp; alignment</div>
-          <div class="pill-flow-arrow" aria-hidden="true">&rarr;</div>
-          <div class="pill-flow-step">Methodology selection</div>
-          <div class="pill-flow-arrow" aria-hidden="true">&rarr;</div>
-          <div class="pill-flow-step">Evidence &amp; source discipline</div>
-          <div class="pill-flow-arrow" aria-hidden="true">&rarr;</div>
-          <div class="pill-flow-step">Pattern extraction &amp; disconfirmation</div>
-          <div class="pill-flow-arrow" aria-hidden="true">&rarr;</div>
-          <div class="pill-flow-step">Convergence</div>
-          <div class="pill-flow-arrow" aria-hidden="true">&rarr;</div>
-          <div class="pill-flow-step">Human review &amp; handoff</div>
-        </div>
+        <figure class="om-diagram">
+          <svg viewBox="0 0 900 230" role="img" aria-label="Six-stage flow. Intake and methodology selection run once, then evidence, extraction, and convergence repeat via a labeled loop-back arrow until the delta is zero, at which point the flow exits to human review.">
+            <defs>
+              <marker id="om-ax" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+              <marker id="om-aloop" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+            </defs>
+
+            <rect class="om-loop-zone" x="280" y="15" width="420" height="80" rx="10"/>
+            <text x="490" y="10" text-anchor="middle" class="om-plain-label">REPEATED UNTIL CONVERGED</text>
+
+            <rect class="om-node-box" x="20" y="30" width="120" height="50" rx="8"/>
+            <text x="80" y="52" text-anchor="middle" class="om-node-label">Intake &amp;</text>
+            <text x="80" y="66" text-anchor="middle" class="om-node-label">alignment</text>
+
+            <rect class="om-node-box" x="160" y="30" width="120" height="50" rx="8"/>
+            <text x="220" y="52" text-anchor="middle" class="om-node-label">Methodology</text>
+            <text x="220" y="66" text-anchor="middle" class="om-node-label">selection</text>
+
+            <rect class="om-node-box" x="300" y="30" width="120" height="50" rx="8"/>
+            <text x="360" y="52" text-anchor="middle" class="om-node-label">Evidence &amp;</text>
+            <text x="360" y="66" text-anchor="middle" class="om-node-label">source discipline</text>
+
+            <rect class="om-node-box" x="440" y="30" width="120" height="50" rx="8"/>
+            <text x="500" y="45" text-anchor="middle" class="om-node-label">Pattern</text>
+            <text x="500" y="59" text-anchor="middle" class="om-node-label">extraction &amp;</text>
+            <text x="500" y="73" text-anchor="middle" class="om-node-label">disconfirmation</text>
+
+            <rect class="om-node-box" x="580" y="30" width="100" height="50" rx="8"/>
+            <text x="630" y="59" text-anchor="middle" class="om-node-label">Convergence</text>
+
+            <rect class="om-node-box" x="740" y="30" width="140" height="50" rx="8"/>
+            <text x="810" y="52" text-anchor="middle" class="om-node-label">Human review</text>
+            <text x="810" y="66" text-anchor="middle" class="om-node-label">&amp; handoff</text>
+
+            <line class="om-flow-line" x1="140" y1="55" x2="158" y2="55" marker-end="url(#om-ax)"/>
+            <line class="om-flow-line" x1="280" y1="55" x2="298" y2="55" marker-end="url(#om-ax)"/>
+            <line class="om-flow-line" x1="420" y1="55" x2="438" y2="55" marker-end="url(#om-ax)"/>
+            <line class="om-flow-line" x1="560" y1="55" x2="578" y2="55" marker-end="url(#om-ax)"/>
+            <line class="om-flow-line" x1="680" y1="55" x2="738" y2="55" marker-end="url(#om-ax)"/>
+            <text x="709" y="45" text-anchor="middle" class="om-plain-label">&Delta;=0</text>
+
+            <path class="om-loop-line" d="M630 80 C 630 150, 360 150, 360 82" marker-end="url(#om-aloop)"/>
+            <text x="495" y="168" text-anchor="middle" class="om-loop-label">IF &Delta;&gt;0, THEN repair, repeat</text>
+          </svg>
+          <figcaption>A tinted zone marks the repeated stages; the accent arc is the only thing that means "try again."</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -97,12 +134,12 @@
       <div class="container">
         <div class="section-heading">
           <div class="eyebrow">Method selection</div>
-          <h2>The method is chosen, not assumed</h2>
+          <h2>Methodology matched to context</h2>
         </div>
         <div class="card-grid">
           <div class="decision-card">
             <div class="dc-condition">Artifact-producing problem</div>
-            <p>Design Science Research Methodology governs by default: problem definition, design, demonstration, evaluation, communication.</p>
+            <p>Design Science Research Methodology governs by default, moving through problem definition, design, demonstration, evaluation, and communication.</p>
           </div>
           <div class="decision-card">
             <div class="dc-condition">Evidence-mapping-only question</div>
@@ -131,7 +168,7 @@
           <div class="grade-badge"><span class="grade-letter">A</span><p>Primary, authoritative, or peer-reviewed evidence.</p></div>
           <div class="grade-badge"><span class="grade-letter">B</span><p>Strong external/institutional evidence or employer-syndicated primary content.</p></div>
           <div class="grade-badge"><span class="grade-letter">C</span><p>Practitioner guidance or a structured public artifact.</p></div>
-          <div class="grade-badge"><span class="grade-letter">D</span><p>Discovery only &mdash; can raise a question, can't establish a conclusion.</p></div>
+          <div class="grade-badge"><span class="grade-letter">D</span><p>Discovery only, raising questions without establishing conclusions.</p></div>
         </div>
         <div class="term-list">
           <span class="term-pill">Source-supported fact</span>
@@ -188,10 +225,13 @@
           <div class="triad-col c3">
             <h4>Human authority retains</h4>
             <ul>
-              <li>Defining and approving the actual decision problem</li>
+              <li>Defining and approving the decision problem</li>
               <li>Approving consequential assumptions or changes</li>
               <li>Owning how the final artifact gets used</li>
-              <li>Final decision authority, full stop</li>
+              <li>Auditing for correctness</li>
+              <li>Determining human readability and usability</li>
+              <li>Redirecting further passes based on misdirected outputs or new research questions</li>
+              <li>Final decision authority</li>
             </ul>
           </div>
         </div>
@@ -205,12 +245,12 @@
             <li>Strongest applicable evidence</li>
             <li>Reasoned inference</li>
             <li>Bounded, documented assumption</li>
-            <li>Escalation, if a real blocker exists</li>
+            <li>Escalation, if a blocker exists</li>
           </ol>
 
           <div class="blocker-callout">
-            <div class="bc-label">What actually counts as a blocker</div>
-            <p>Not routine uncertainty. A real blocker exists only when a decision materially affects validity or usefulness, the available evidence can't resolve it, more than one defensible path remains, and proceeding on an assumption would compromise the research. Everything short of that gets resolved through the hierarchy above, not kicked back as a question.</p>
+            <div class="bc-label">What counts as a blocker</div>
+            <p>A blocker exists only when a decision materially affects validity or usefulness, the available evidence can't resolve it, more than one defensible path remains, and proceeding on an assumption would compromise the research. Everything short of that is resolved through the hierarchy above.</p>
           </div>
         </div>
       </div>
@@ -223,14 +263,17 @@
           <div class="eyebrow">Disconfirmation &amp; convergence</div>
           <h2>Execute, find the fault, repair, repeat</h2>
         </div>
+        <div class="prose-block">
+          <p style="text-align:center;">A convergence loop runs the same review pass repeatedly, finding and repairing faults or gaps until the delta between passes reaches zero. This page is itself a product of that loop. The same research framework it describes governed how this page's own content and structure took shape.</p>
+        </div>
         <div class="bug-story">
           <h4>Convergence record excerpt</h4>
-          <p class="bs-note">A real excerpt from the process behind this page itself &mdash; four rounds out of the thirteen actually run.</p>
+          <p class="bs-note">Four of the thirteen convergence rounds behind this page.</p>
           <div class="timeline">
             <div class="timeline-step">
               <div class="timeline-dot"></div>
               <div class="timeline-step-label">Round 1</div>
-              <div class="timeline-step-detail"><strong>Fault:</strong> "Non-code" described what was absent, not what capability was present. <strong>Repair:</strong> reframed around Workflow, Decision, and Research/Intelligence system jobs. <strong>Delta:</strong> high.</div>
+              <div class="timeline-step-detail"><strong>Fault:</strong> "Non-code" only described an absence. It named no actual capability. <strong>Repair:</strong> reframed around Workflow, Decision, and Research/Intelligence system jobs. <strong>Delta:</strong> high.</div>
             </div>
             <div class="timeline-step">
               <div class="timeline-dot"></div>
@@ -245,7 +288,7 @@
             <div class="timeline-step is-final">
               <div class="timeline-dot"></div>
               <div class="timeline-step-label">Round 13</div>
-              <div class="timeline-step-detail"><strong>Confirmation audit.</strong> No new substantive structural fault found. <strong>Delta:</strong> zero &mdash; convergence reached.</div>
+              <div class="timeline-step-detail"><strong>Confirmation audit.</strong> No new substantive structural fault found. <strong>Delta:</strong> zero. Convergence reached.</div>
             </div>
           </div>
         </div>
@@ -257,10 +300,10 @@
       <div class="container">
         <div class="section-heading">
           <div class="eyebrow">Representative studies</div>
-          <h2>The same process, three different problems</h2>
+          <h2>Three different problems explored</h2>
         </div>
         <div class="pending-block">
-          <p>Three real studies go here once their evidence packages are translated into portfolio-ready form: this portfolio's own architecture research, a two-stage market study (an industry-wide website-agency report deepened against one real operating stakeholder, anonymized), and an enterprise agent-governance study. Each will show its question, method, evidence streams, one real contradiction or refinement, the resulting artifact, and what it enabled.</p>
+          <p>This section will hold three real studies once their evidence packages are translated into portfolio-ready form. They span this portfolio's own architecture research, a two-stage market study (an industry-wide website-agency report deepened against one real operating stakeholder, anonymized), and an enterprise agent-governance study. Each will show its question, method, evidence streams, one real contradiction or refinement, the resulting artifact, and what it enabled.</p>
         </div>
       </div>
     </section>
@@ -273,10 +316,10 @@
           <h2>What this proves, and what it doesn't yet</h2>
         </div>
         <div class="limits-block">
-          <p>The process above &mdash; intake, methodology gate, evidence discipline, convergence, human review &mdash; is real and has been refined across multiple real research efforts, this page's own architecture research included. What's still pending is the study-specific evidence: which outcomes were measured versus estimated, what each study's evidence register actually shows, and where the framework itself hit a real limitation rather than a clean success. That detail lands here once the representative studies above are filled in, rather than being asserted ahead of the evidence that would support it.</p>
+          <p>This research framework compiles findings through a transparent method, built specifically to inform strategy development and planning. It runs through intake, methodology gate, evidence discipline, convergence, and human review, and it has been refined across multiple research efforts. The framework is inherently limited by the nature of open-source information, and it can be further refined through individual use once hard data becomes available and connected. I'm also refining small details in the final PDF format, slowly minimizing the routine edits that can be defined before the process even begins. Any research here should be read as signal. Actual business decisions or assumptions still need multiple sources behind them before they're considered confident.</p>
         </div>
         <div class="inspect-links">
-          Framework document and evidence-register excerpts: coming to GitHub once the representative studies are finalized.
+          Framework document and evidence-register excerpts are coming to GitHub once the representative studies are finalized.
         </div>
       </div>
     </section>
