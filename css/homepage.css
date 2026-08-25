@@ -1,0 +1,236 @@
+/* Homepage — page-specific component styles.
+   Shared section/button/prose rules now live in shared.css. */
+
+.hero h1 {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.operating-promise {
+  max-width: 560px;
+  margin: 0 auto var(--space-6);
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Selected Proof */
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .proof-grid { grid-template-columns: 1fr; }
+}
+
+.proof-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-5);
+  border-top: 3px solid var(--proof-color, var(--border));
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--transition-fast);
+}
+
+a.proof-card:hover {
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+.proof-card:nth-child(1) { --proof-color: var(--cat-resume); }
+.proof-card:nth-child(2) { --proof-color: var(--cat-coverletter); }
+.proof-card:nth-child(3) { --proof-color: var(--cat-subcard); }
+
+.proof-tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.proof-card h3 {
+  font-size: 17px;
+  margin: 0 0 var(--space-3);
+  min-height: 80px;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.proof-value {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin: 0 0 var(--space-3);
+  min-height: 105px;
+}
+
+.proof-proves {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1.5;
+  margin: 0 0 var(--space-4);
+  min-height: 60px;
+}
+
+.proof-cue {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+.proof-inspect {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-top: var(--space-3);
+}
+
+/* How the work connects */
+
+.connects-intro {
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.connects-branch-svg {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: 60px;
+  margin: var(--space-2) auto 0;
+}
+
+.connects-branch-line {
+  stroke: var(--border);
+  stroke-width: 2;
+  fill: none;
+}
+
+.connects-branch-dot {
+  fill: var(--accent);
+}
+
+.connects-branch-arrow {
+  display: none;
+  text-align: center;
+  font-size: 22px;
+  color: var(--accent);
+  margin: var(--space-4) 0;
+}
+
+@media (max-width: 768px) {
+  .connects-branch-svg { display: none; }
+  .connects-branch-arrow { display: block; }
+}
+
+.connects-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .connects-actions { grid-template-columns: 1fr; }
+}
+
+.connects-action {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border-top: 3px solid var(--action-color, var(--border));
+  box-shadow: var(--shadow-card);
+  padding: var(--space-4);
+  text-align: center;
+}
+
+.connects-action.c1 { --action-color: var(--cat-resume); }
+.connects-action.c2 { --action-color: var(--cat-coverletter); }
+.connects-action.c3 { --action-color: var(--cat-subcard); }
+
+.connects-action-project {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+}
+
+.connects-action-value {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Background Bridge */
+
+.bridge-note {
+  font-size: 13px;
+}
+
+/* External / Third-Party Evidence */
+
+.evidence-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7);
+  max-width: 900px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .evidence-row { grid-template-columns: 1fr; }
+}
+
+.evidence-col p {
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 var(--space-3);
+}
+
+.evidence-citation {
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+
+.evidence-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  display: block;
+}

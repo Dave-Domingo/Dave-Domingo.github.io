@@ -1,0 +1,207 @@
+/* Research-to-Artifact System — page-specific component styles.
+   Shared section/button/prose/card/triad/timeline rules now live in
+   shared.css; this file only holds what's genuinely unique to this page. */
+
+.hero h1 {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.status-line {
+  max-width: 560px;
+  margin: 0 auto var(--space-5);
+}
+
+/* Failure-mode grid */
+
+.failure-grid {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.failure-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-4);
+  flex: 1;
+  min-width: 220px;
+  max-width: 280px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Method-selection gate labels */
+
+.decision-card .dc-condition {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: var(--space-2);
+}
+
+/* Evidence & claim discipline */
+
+.grade-row {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: var(--space-5) 0;
+}
+
+.grade-badge {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-3) var(--space-4);
+  min-width: 190px;
+  max-width: 220px;
+  text-align: left;
+}
+
+.grade-badge .grade-letter {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--accent);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 24px;
+  height: 24px;
+  line-height: 22px;
+  text-align: center;
+  margin-bottom: var(--space-2);
+}
+
+.grade-badge p {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.rule-list {
+  max-width: var(--reading-width);
+  margin: 0 auto;
+  padding-left: 18px;
+}
+
+.rule-list li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+/* Decision authority hierarchy + blocker standard */
+
+.authority-block {
+  max-width: 640px;
+  margin: var(--space-7) auto 0;
+}
+
+.authority-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-3);
+  text-align: center;
+}
+
+.authority-ladder {
+  list-style: none;
+  counter-reset: authority;
+  margin: 0 0 var(--space-6);
+  padding: 0;
+}
+
+.authority-ladder li {
+  counter-increment: authority;
+  position: relative;
+  padding: 8px 0 8px 38px;
+  font-size: 14px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+}
+
+.authority-ladder li:last-child { border-bottom: none; }
+
+.authority-ladder li::before {
+  content: counter(authority);
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 20px;
+}
+
+.blocker-callout {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-5);
+}
+
+.blocker-callout .bc-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: var(--space-2);
+}
+
+.blocker-callout p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0 0 var(--space-3);
+}
+
+.blocker-callout p:last-child { margin-bottom: 0; }
+
+/* Placeholder / pending-content marker */
+
+.pending-block {
+  max-width: 640px;
+  margin: 0 auto;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.pending-block p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}

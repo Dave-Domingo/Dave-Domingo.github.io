@@ -1,0 +1,85 @@
+/* Design tokens — site-wide. Colors are warm-neutral with a terracotta accent,
+   adaptive to light/dark via prefers-color-scheme. Approved 2026-08-18. */
+
+:root {
+  /* Color — light (default) — "Ink & Signal" */
+  --bg: #F5F6F8;
+  --surface: #FFFFFF;
+  --text-primary: #14181F;
+  --text-secondary: #5B6472;
+  --border: #DDE1E6;
+  --accent: #2955D6;
+  --on-accent: #FFFFFF;
+  --code-bg: #E3E8ED;
+  --shadow-card: 0 2px 8px rgba(20, 24, 31, 0.08);
+
+  /* Diagram category colors — light */
+  --cat-foundation: #2955D6;
+  --cat-resume: #2E9E8F;
+  --cat-coverletter: #6C5CE0;
+  --cat-subcard: #C98A1F;
+
+  /* Typography */
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --text-h1: clamp(1.75rem, 4vw, 2.5rem);
+  --text-h2: clamp(1.375rem, 3vw, 1.75rem);
+  --text-h3: 1.25rem;
+  --text-body: 1.0625rem;
+  --text-small: 0.8125rem;
+  --text-code: 0.875rem;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Layout */
+  --max-width: 1200px;
+  --reading-width: 680px;
+  --card-width: 440px;
+  --breakpoint-tablet: 1024px;
+  --breakpoint-mobile: 640px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-lg: 12px;
+
+  /* Motion */
+  --transition-fast: 150ms ease-out;
+  --transition-base: 250ms ease;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --card-width: 300px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* "Ink & Signal" — dark */
+    --bg: #0D1117;
+    --surface: #161B22;
+    --text-primary: #E8EBEF;
+    --text-secondary: #9098A6;
+    --border: #2A313C;
+    --accent: #5B8AFF;
+    --on-accent: #0D1117;
+    --code-bg: #1C232C;
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.35);
+
+    --cat-foundation: #5B8AFF;
+    --cat-resume: #3FBBAA;
+    --cat-coverletter: #8B7CF0;
+    --cat-subcard: #D9A23E;
+  }
+}

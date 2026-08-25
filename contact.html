@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Dave Domingo</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/tokens.css?v=4">
+    <link rel="stylesheet" href="css/base.css?v=3">
+    <link rel="stylesheet" href="css/shared.css?v=1">
+  </head>
+  <body>
+
+    <header class="site-header" id="top">
+      <div class="container site-header-inner">
+        <div class="site-identity">
+          <a href="index.html" class="site-name">Dave Domingo</a>
+          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span>Open to opportunities</span>
+        </div>
+        <nav class="site-nav">
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" onclick="toggleWorkDropdown(this)">Work</button>
+            <div class="nav-dropdown-menu" hidden>
+              <a href="job-pipeline.html">Job Application Pipeline</a>
+              <span class="dropdown-item-disabled">Governed AI Decision &amp; Execution Framework <span class="soon-tag">Soon</span></span>
+              <span class="dropdown-item-disabled">Research-to-Artifact System <span class="soon-tag">Soon</span></span>
+            </div>
+          </div>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container" style="text-align:center; max-width: 560px; margin: 0 auto;">
+        <div class="eyebrow">Contact</div>
+        <h1 style="font-size: var(--text-h2);">Reach me directly</h1>
+        <p>The best way to get in touch is via my email or LinkedIn.</p>
+        <div style="margin-top: var(--space-6); display:flex; flex-direction:column; gap: var(--space-6);">
+          <div>
+            <div style="font-family: var(--font-sans); font-size:11px; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-secondary); margin-bottom:6px;">Email</div>
+            <a href="mailto:david.l.domingo@gmail.com" style="font-size:18px;">david.l.domingo@gmail.com</a>
+          </div>
+          <div>
+            <div style="font-family: var(--font-sans); font-size:11px; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-secondary); margin-bottom:6px;">LinkedIn</div>
+            <a href="https://www.linkedin.com/in/raleighwithdave" target="_blank" rel="noopener" style="font-size:18px;">linkedin.com/in/raleighwithdave</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container site-footer-inner">
+        <div class="footer-links">
+          <a href="https://github.com/Dave-Domingo" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/raleighwithdave" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="footer-link-disabled">YouTube <span class="soon-tag">Soon</span></span>
+          <a href="contact.html">Contact</a>
+          <a href="#top" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">Back to top</a>
+        </div>
+        <div class="footer-meta">
+          <p>&copy; 2026 Dave Domingo</p>
+          <p>This page was coded with Claude Code.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function toggleWorkDropdown(btn) {
+        var menu = btn.nextElementSibling;
+        var isOpen = !menu.hidden;
+        closeAllDropdowns();
+        if (!isOpen) {
+          menu.hidden = false;
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      }
+
+      function closeAllDropdowns() {
+        document.querySelectorAll('.nav-dropdown-menu').forEach(function(menu) {
+          menu.hidden = true;
+          menu.previousElementSibling.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-dropdown')) closeAllDropdowns();
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeAllDropdowns();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,409 @@
+/* Shared component library — loaded by every page after tokens.css/base.css
+   and before that page's own stylesheet. This file is the enforceable source
+   of truth for cross-page consistency; see STYLE_GUIDE.md for the "when to
+   use which" reference. A page-specific stylesheet should only ever contain
+   rules that are genuinely unique to that page — if a second page needs the
+   same rule, it belongs here instead. */
+
+/* Section rhythm */
+
+.section {
+  padding: var(--space-9) 0;
+}
+
+.section-tint {
+  background: var(--surface);
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-2);
+}
+
+.hero {
+  text-align: center;
+  padding: var(--space-9) 0;
+}
+
+.status-line {
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-5);
+}
+
+/* Buttons */
+
+.btn-row {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-pill {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-pill-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  border: 1px solid transparent;
+}
+
+.btn-pill-secondary {
+  background: var(--code-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+/* At-a-glance strip (executive-snapshot fact cards) */
+
+.at-a-glance-label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: var(--space-7) 0 var(--space-3);
+}
+
+.glance-row {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.glance-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-4);
+  flex: 1;
+  min-width: 220px;
+  max-width: 280px;
+  text-align: left;
+}
+
+.glance-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Long-form prose */
+
+.prose-block {
+  max-width: var(--reading-width);
+  margin: 0 auto;
+}
+
+.prose-block p {
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Two-column decision/condition cards (e.g. "key decisions", "method selection") */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .card-grid { grid-template-columns: 1fr; }
+}
+
+.decision-card {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.decision-card p {
+  margin: 0;
+}
+
+/* Three-column boundary/ownership split (uses the resume/coverletter/subcard
+   category triad purely for visual differentiation, not shared semantics) */
+
+.triad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .triad-grid { grid-template-columns: 1fr; }
+}
+
+.triad-col {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  border-top: 3px solid var(--triad-color, var(--border));
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+}
+
+.triad-col.c1 { --triad-color: var(--cat-resume); }
+.triad-col.c2 { --triad-color: var(--cat-coverletter); }
+.triad-col.c3 { --triad-color: var(--cat-subcard); }
+
+.triad-col h4 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.triad-col ul {
+  margin: 0 0 var(--space-3);
+  padding-left: 18px;
+}
+
+.triad-col li {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.triad-col .why {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-3);
+  margin-top: auto;
+}
+
+/* Small classification/concept tags */
+
+.term-list {
+  max-width: 640px;
+  margin: 0 auto var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+}
+
+.term-pill {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 4px 12px;
+}
+
+/* Only pills that are real buttons (job-pipeline's expandable-term pills) get
+   interactive affordances — a static classification label should never look
+   clickable. */
+button.term-pill {
+  cursor: pointer;
+}
+
+button.term-pill:hover {
+  opacity: 0.8;
+}
+
+/* Wrapping row of pill-shaped steps connected by arrows (a linear process:
+   homepage's "how the work connects", the research page's operating model) */
+
+.pill-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pill-flow-step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 9px 16px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.pill-flow-arrow {
+  color: var(--accent);
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .pill-flow-arrow { display: none; }
+  .pill-flow { flex-direction: column; align-items: stretch; }
+  .pill-flow-step { text-align: center; }
+}
+
+/* Evidence-state badge (e.g. Demonstrated / Self-use / External validation) */
+
+.state-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 3px 12px;
+  margin-bottom: var(--space-2);
+}
+
+/* Sequential fault/round record (debug timelines, convergence excerpts) */
+
+.bug-story {
+  max-width: 620px;
+  margin: 0 auto var(--space-6);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-6);
+}
+
+.bug-story h4 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.bug-story .bs-note {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-5);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 28px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-step {
+  position: relative;
+  margin-bottom: var(--space-4);
+}
+
+.timeline-step:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -28px;
+  top: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+
+.timeline-step.is-fail .timeline-dot,
+.timeline-step.is-final .timeline-dot {
+  background: var(--accent);
+}
+
+.timeline-step.is-fail .timeline-step-label {
+  color: var(--text-primary);
+}
+
+.timeline-step-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 3px;
+}
+
+.timeline-step-detail {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.timeline-step-detail strong {
+  color: var(--text-primary);
+}
+
+/* Limitations / deeper-inspection footer */
+
+.limits-block {
+  max-width: var(--reading-width);
+  margin: 0 auto;
+}
+
+.limits-block p {
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.inspect-links {
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: var(--space-5);
+}
+
+.inspect-links a {
+  color: var(--accent);
+}

@@ -1,5 +1,191 @@
 <!DOCTYPE html>
-<html>
-  <head><title>Dave Domingo</title></head>
-  <body><h1>Portfolio coming soon.</h1></body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dave Domingo</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/tokens.css?v=4">
+    <link rel="stylesheet" href="css/base.css?v=3">
+    <link rel="stylesheet" href="css/shared.css?v=1">
+    <link rel="stylesheet" href="css/homepage.css?v=13">
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <div class="container site-header-inner">
+        <div class="site-identity">
+          <a href="index.html" class="site-name">Dave Domingo</a>
+          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span>Open to opportunities</span>
+        </div>
+        <nav class="site-nav">
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" onclick="toggleWorkDropdown(this)">Work</button>
+            <div class="nav-dropdown-menu" hidden>
+              <a href="job-pipeline.html">Job Application Pipeline</a>
+              <span class="dropdown-item-disabled">Governed AI Decision &amp; Execution Framework <span class="soon-tag">Soon</span></span>
+              <span class="dropdown-item-disabled">Research-to-Artifact System <span class="soon-tag">Soon</span></span>
+            </div>
+          </div>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Applied AI Solutions &amp; Workflow Design</h1>
+        <p class="operating-promise">I apply human-centered AI to the highest-leverage problems, helping people operate more effectively and reclaim time.</p>
+        <div class="btn-row">
+          <a href="contact.html" class="btn-pill btn-pill-primary">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Proof -->
+    <section class="section" id="selected-proof">
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="eyebrow">Selected Proof</h2>
+        </div>
+        <div class="proof-grid">
+          <a class="proof-card" href="job-pipeline.html">
+            <div class="proof-tag">Workflow / Automation System</div>
+            <h3>Job Application Pipeline</h3>
+            <p class="proof-value">A job application companion that empowers job seekers by automating manual tasks, so they can focus on the high-leverage decisions.</p>
+            <p class="proof-proves">Proves I can design and control an AI-enabled operational workflow.</p>
+            <p class="proof-cue">Live and in active use, deployed for one additional user beyond myself.</p>
+            <span class="proof-inspect">View case study &rarr;</span>
+          </a>
+          <div class="proof-card">
+            <div class="proof-tag">Decision / Planning System</div>
+            <h3>Governed AI Decision &amp; Execution Framework <span class="soon-tag">Coming soon</span></h3>
+            <p class="proof-value">A governed planning system that develops alternatives, tests them against locked criteria, and converts the selected decision into an executable plan, with AI never holding final authority.</p>
+            <p class="proof-proves">Proves I can use AI inside a disciplined decision and execution method without outsourcing the final call.</p>
+            <p class="proof-cue">Self-directed case: applied to my own career transition. Planning and selection complete, execution ongoing.</p>
+          </div>
+          <div class="proof-card">
+            <div class="proof-tag">Research / Intelligence System</div>
+            <h3>Research-to-Artifact System <span class="soon-tag">Coming soon</span></h3>
+            <p class="proof-value">A repeatable research system that turns an ambiguous question into source-disciplined evidence and a decision-ready artifact.</p>
+            <p class="proof-proves">Proves I can turn ambiguous questions into governed evidence and decision-ready artifacts.</p>
+            <p class="proof-cue">Self-use only, applied to AI-landscape research and portfolio/marketing decisions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How the work connects -->
+    <section class="section section-tint">
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="eyebrow">How the work connects</h2>
+          <p class="connects-intro">The same operating pattern runs through all three projects, ending in a different action.</p>
+        </div>
+        <div class="pill-flow">
+          <div class="pill-flow-step">Define the problem</div>
+          <div class="pill-flow-arrow" aria-hidden="true">&rarr;</div>
+          <div class="pill-flow-step">Build the execution framework</div>
+          <div class="pill-flow-arrow" aria-hidden="true">&rarr;</div>
+          <div class="pill-flow-step">Execute with AI</div>
+          <div class="pill-flow-arrow" aria-hidden="true">&rarr;</div>
+          <div class="pill-flow-step">Branch when needed</div>
+        </div>
+        <svg class="connects-branch-svg" viewBox="0 0 900 60" preserveAspectRatio="none" aria-hidden="true">
+          <line class="connects-branch-line" x1="450" y1="0" x2="450" y2="20"></line>
+          <line class="connects-branch-line" x1="450" y1="20" x2="150" y2="60"></line>
+          <line class="connects-branch-line" x1="450" y1="20" x2="450" y2="60"></line>
+          <line class="connects-branch-line" x1="450" y1="20" x2="750" y2="60"></line>
+          <circle class="connects-branch-dot" cx="450" cy="20" r="4"></circle>
+        </svg>
+        <div class="connects-branch-arrow" aria-hidden="true">&darr;</div>
+        <div class="connects-actions">
+          <div class="connects-action c1">
+            <div class="connects-action-project">Job Application Pipeline</div>
+            <div class="connects-action-value">An operational workflow</div>
+          </div>
+          <div class="connects-action c2">
+            <div class="connects-action-project">Governed AI Decision &amp; Execution Framework</div>
+            <div class="connects-action-value">An executable plan</div>
+          </div>
+          <div class="connects-action c3">
+            <div class="connects-action-project">Research-to-Artifact System</div>
+            <div class="connects-action-value">A decision-ready artifact</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Background Bridge -->
+    <section class="section">
+      <div class="container">
+        <div class="prose-block">
+          <h2 class="eyebrow">Background Bridge</h2>
+          <p>After two years of using AI in real estate, and coming from a background as a military officer, I realized the work I enjoyed most was being a strategic operator who builds solutions. AI is becoming more accessible by the day, and I want to help extend that into business and personal contexts alike.</p>
+          <p class="bridge-note">Full history lives on LinkedIn.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- External / Third-Party Evidence -->
+    <section class="section section-tint">
+      <div class="container">
+        <div class="evidence-row">
+          <div class="evidence-col">
+            <h2 class="eyebrow">External / Third-Party Evidence</h2>
+            <p>Published perspective on how AI is reshaping the job search and hiring process.</p>
+            <p class="evidence-citation">All Things Open, August 2026 &middot; <a href="https://allthingsopen.org/articles/state-of-tech-ai-jobs-three-questions" target="_blank" rel="noopener">Read the article</a></p>
+          </div>
+          <div class="evidence-image">
+            <a href="https://allthingsopen.org/articles/state-of-tech-ai-jobs-three-questions" target="_blank" rel="noopener">
+              <img src="img/ato-state-of-tech-ai-jobs-cover.jpg" alt="Cover image for &quot;The State of Tech and AI Jobs: Three questions worth asking,&quot; published by All Things Open">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container site-footer-inner">
+        <div class="footer-links">
+          <a href="https://github.com/Dave-Domingo" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/raleighwithdave" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="footer-link-disabled">YouTube <span class="soon-tag">Soon</span></span>
+          <a href="contact.html">Contact</a>
+          <a href="#top" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">Back to top</a>
+        </div>
+        <div class="footer-meta">
+          <p>&copy; 2026 Dave Domingo</p>
+          <p>This page was coded with Claude Code.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function toggleWorkDropdown(btn) {
+        var menu = btn.nextElementSibling;
+        var isOpen = !menu.hidden;
+        closeAllDropdowns();
+        if (!isOpen) {
+          menu.hidden = false;
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      }
+
+      function closeAllDropdowns() {
+        document.querySelectorAll('.nav-dropdown-menu').forEach(function(menu) {
+          menu.hidden = true;
+          menu.previousElementSibling.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-dropdown')) closeAllDropdowns();
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeAllDropdowns();
+      });
+    </script>
+  </body>
 </html>

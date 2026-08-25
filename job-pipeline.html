@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Pipeline | Dave Domingo</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/tokens.css?v=4">
+    <link rel="stylesheet" href="css/base.css?v=3">
+    <link rel="stylesheet" href="css/shared.css?v=1">
+    <link rel="stylesheet" href="css/job-pipeline.css?v=4">
+  </head>
+  <body>
+
+    <header class="site-header" id="top">
+      <div class="container site-header-inner">
+        <div class="site-identity">
+          <a href="index.html" class="site-name">Dave Domingo</a>
+          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span>Open to opportunities</span>
+        </div>
+        <nav class="site-nav">
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" onclick="toggleWorkDropdown(this)">Work</button>
+            <div class="nav-dropdown-menu" hidden>
+              <a href="job-pipeline.html">Job Application Pipeline</a>
+              <span class="dropdown-item-disabled">Governed AI Decision &amp; Execution Framework <span class="soon-tag">Soon</span></span>
+              <span class="dropdown-item-disabled">Research-to-Artifact System <span class="soon-tag">Soon</span></span>
+            </div>
+          </div>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- A. Executive snapshot -->
+    <section class="section hero">
+      <div class="container">
+        <div class="eyebrow">Job application pipeline</div>
+        <h1>A job-search companion built for selective, hands-on use.</h1>
+        <div class="status-line">Live and in active use, deployed for one additional user beyond myself. Self-service onboarding for more users is next.</div>
+        <div class="btn-row">
+          <a href="#system-map" class="btn-pill btn-pill-primary">View workflow</a>
+          <a href="https://github.com/Dave-Domingo/job-application-pipeline" target="_blank" rel="noopener" class="btn-pill btn-pill-secondary">GitHub</a>
+          <a href="#evaluation" class="btn-pill btn-pill-secondary">Evaluation</a>
+        </div>
+        <div class="at-a-glance-label">At a glance</div>
+        <div class="glance-row">
+          <div class="glance-card"><p>Switching resume retrieval from flat to chunked semantic embedding nearly doubled measured retrieval spread (5.9 to 12.6) across 3 job types, with an honest caveat: the effect is vocabulary-dependent, not universal.</p></div>
+          <div class="glance-card"><p>Five models across three providers, each assigned by documented task-fit reasoning.</p></div>
+          <div class="glance-card"><p>Bugs found and fixed with direct, measured verification.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B. Problem / prior workflow -->
+    <section class="section">
+      <div class="container">
+        <div class="prose-block">
+          <div class="eyebrow">Why this exists</div>
+          <h2>Twelve years without a resume</h2>
+          <p>I used AI in various capacities for real estate and investing for two years, namely to help with marketing and sales. Eventually, I started preferring the AI implementation work over real estate and decided I wanted to find a job that focuses on AI. The problem was that after 12 years of total employment, I had never needed a resume or cover letter. Furthermore, I was doing a career pivot, which meant my work required translation.</p>
+          <p>After 6-8 weeks of using ChatGPT to help refine my resume, I decided that I needed to solve for scale. Around that time, I saw some unsettling data from LinkedIn about job application conversion rates, and at my current volume it could reasonably take 10+ months. If I could scale the repeat labor, I would recapture time that would allow me to focus on improving my position (certifications, projects, etc.) and leaning further into the human element, like networking or getting involved in the community. Slowly my personal use evolved to a live deployment for my friend Grace, who was also pursuing a job transition while working full time.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- C. What I built -->
+    <section class="section section-tint">
+      <div class="container">
+        <div class="prose-block">
+          <div class="eyebrow">What I built</div>
+          <h2>Designed to use only verified facts</h2>
+          <p>I built a tool that generates tailored resumes and cover letters from a job posting, built so that everything it writes traces back to something I actually did. It reads a job posting, pulls relevant facts from my own verified history, drafts a resume shaped to that specific role, and enforces hard limits on what it's allowed to claim. I review and can override every selection before anything goes out.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- D. System map -->
+    <section class="section" id="system-map">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">System map</div>
+          <h2>How it fits together</h2>
+        </div>
+        <div class="prose-block" style="text-align:center; margin-bottom: var(--space-6);">
+          <p>The following concepts are inspectable within the system map:</p>
+        </div>
+        <div class="term-list">
+          <button class="term-pill" onclick="openCardTerm('ov-ssot')">SSOT implementation</button>
+          <button class="term-pill" onclick="openCardTerm('ov-ssot')">Guardrails</button>
+          <button class="term-pill" onclick="openCardTerm('ov-ssot')">Negative prompting</button>
+          <button class="term-pill" onclick="openCardTerm('ov-pipeline')">Parsing</button>
+          <button class="term-pill" onclick="openCardTerm('ov-pipeline')">Workflow design</button>
+          <button class="term-pill" onclick="openCardTerm('ov-agent')">Building agents</button>
+          <button class="term-pill" onclick="openCardTerm('ov-rag')">RAG-based retrieval</button>
+          <button class="term-pill" onclick="openCardTerm('ov-hitl')">Human-in-the-loop gates</button>
+          <button class="term-pill" onclick="openCardTerm('ov-research')">Tool use / grounded retrieval</button>
+          <button class="term-pill" onclick="openCardTerm('ov-validation')">Structured output validation</button>
+          <button class="term-pill" onclick="openCardTerm('ov-multimodel')">Model calls</button>
+          <button class="term-pill" onclick="openCardTerm('ov-multimodel')">Model strengths &amp; weaknesses</button>
+          <button class="term-pill" onclick="openCardTerm('ov-context')">Context durability</button>
+        </div>
+        <svg width="100%" viewBox="0 0 680 260" role="img" style="max-width:680px; display:block; margin:0 auto;">
+          <title>Job Pipeline top-level architecture and data flow</title>
+          <desc>Onboarding creates the SSOT record; the self-serve profile agent updates it ongoing; the per-application pipeline reads through it for every application; completed applications flow into portfolio tracking.</desc>
+          <defs><marker id="arrH" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+          <rect x="50" y="40" width="130" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+          <text x="115" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Onboarding</text>
+          <text x="115" y="78" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">New user SSOT</text>
+          <rect x="240" y="40" width="200" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+          <text x="340" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-foundation)">SSOT &amp; guardrails</text>
+          <text x="340" y="78" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Trust &amp; validation</text>
+          <rect x="500" y="40" width="130" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+          <text x="565" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Self-serve</text>
+          <text x="565" y="78" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Profile agent</text>
+          <line x1="180" y1="68" x2="240" y2="68" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrH)"/>
+          <text x="210" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">creates</text>
+          <line x1="500" y1="68" x2="440" y2="68" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrH)"/>
+          <text x="470" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">updates</text>
+          <line x1="340" y1="96" x2="340" y2="170" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrH)"/>
+          <text x="350" y="133" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">reads</text>
+          <rect x="265" y="170" width="150" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+          <text x="340" y="190" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Pipeline</text>
+          <text x="340" y="208" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Per-app cycle</text>
+          <line x1="415" y1="198" x2="460" y2="198" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrH)"/>
+          <rect x="460" y="170" width="150" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+          <text x="535" y="190" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Portfolio</text>
+          <text x="535" y="208" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">App tracking</text>
+        </svg>
+
+        <div class="view-all-row">
+          <button class="view-all-btn" onclick="openViewAll()">View as grid</button>
+        </div>
+        <div class="carousel-wrap" id="carousel-wrap">
+          <div class="carousel-fade left"></div>
+          <div class="carousel-fade right"></div>
+          <button class="carousel-arrow prev" onclick="scrollCarousel(-1)" disabled aria-label="Scroll left">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="carousel-arrow next" onclick="scrollCarousel(1)" aria-label="Scroll right">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        <div class="carousel" id="top-carousel">
+
+          <!-- Card 1: SSOT & Guardrails -->
+          <div class="diagram-card">
+            <h3>SSOT &amp; guardrails</h3>
+            <p class="card-desc">Every fact and claim is checked against one source of truth before it reaches a draft.</p>
+            <div class="card-svg-wrap">
+              <svg width="100%" viewBox="0 0 320 390" role="img">
+                <title>SSOT and guardrails diagram</title>
+                <desc>Master inventory feeds guardrail checks, which produce evidence-tiered output. A separate audit sweep checks the retrofit's correctness across users.</desc>
+                <defs><marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                <rect x="20" y="20" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-foundation)">Master inventory</text>
+                <text x="160" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Facts, bullets, skills</text>
+                <line x1="160" y1="76" x2="160" y2="106" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a1)"/>
+                <rect x="20" y="106" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-foundation)">Guardrail checks</text>
+                <text x="160" y="144" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Blocks + rewrites</text>
+                <line x1="160" y1="162" x2="160" y2="192" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a1)"/>
+                <rect x="20" y="192" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="212" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-foundation)">Evidence tiers</text>
+                <text x="160" y="230" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">What's allowed to draft</text>
+                <line x1="160" y1="248" x2="160" y2="278" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a1)"/>
+                <rect x="20" y="278" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-dasharray="4 3"/>
+                <text x="160" y="298" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-foundation)">Audit sweep</text>
+                <text x="160" y="316" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Checks the retrofit itself</text>
+              </svg>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-ssot'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <!-- Card 2: Onboarding -->
+          <div class="diagram-card">
+            <h3>Onboarding</h3>
+            <p class="card-desc">A new user's source of truth doesn't exist yet. Conversational intake builds it from scratch, and the user confirms every fact before anything goes live.</p>
+            <div class="card-svg-wrap">
+              <svg width="100%" viewBox="0 0 320 390" role="img">
+                <title>Onboarding diagram</title>
+                <desc>Conversational intake produces draft SSOT files, which the user reviews and confirms before they're promoted to a live per-user profile.</desc>
+                <defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                <rect x="20" y="20" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Conversational intake</text>
+                <text x="160" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Extract facts from chat</text>
+                <line x1="160" y1="76" x2="160" y2="106" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a2)"/>
+                <rect x="20" y="106" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Draft SSOT files</text>
+                <text x="160" y="144" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Facts, skills, role families</text>
+                <line x1="160" y1="162" x2="160" y2="192" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a2)"/>
+                <rect x="20" y="192" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="212" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">User review</text>
+                <text x="160" y="230" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Confirm before it's live</text>
+                <line x1="160" y1="248" x2="160" y2="278" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a2)"/>
+                <rect x="20" y="278" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="298" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Promoted to profile</text>
+                <text x="160" y="316" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Real per-user files</text>
+              </svg>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-onboarding'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <!-- Card 3: Per-Application Pipeline -->
+          <div class="diagram-card">
+            <h3>Per-application pipeline</h3>
+            <p class="card-desc">Two tracks, one shared trust layer. Resume and cover letter generation both read and validate through the same SSOT and guardrails.</p>
+            <div class="card-svg-wrap">
+              <svg width="100%" viewBox="0 0 400 390" role="img">
+                <title>Per-application pipeline diagram</title>
+                <desc>SSOT and guardrails container wrapping two tracks side by side: resume and cover letter, each with four stages.</desc>
+                <defs><marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                <rect x="20" y="20" width="360" height="350" rx="16" fill="none" stroke="var(--cat-foundation)" stroke-width="1.5"/>
+                <text x="200" y="46" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="var(--cat-foundation)">SSOT &amp; guardrails</text>
+                <rect x="36" y="76" width="154" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="113" y="96" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">JD intake</text>
+                <text x="113" y="114" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Parse + fit score</text>
+                <rect x="36" y="146" width="154" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="113" y="166" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Retrieval</text>
+                <text x="113" y="184" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">RAG + dedup</text>
+                <rect x="36" y="216" width="154" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="113" y="236" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Draft loop</text>
+                <text x="113" y="254" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Human + AI review</text>
+                <rect x="36" y="286" width="154" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="113" y="306" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Resume</text>
+                <text x="113" y="324" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">PDF render</text>
+                <line x1="113" y1="132" x2="113" y2="146" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a3)"/>
+                <line x1="113" y1="202" x2="113" y2="216" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a3)"/>
+                <line x1="113" y1="272" x2="113" y2="286" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a3)"/>
+                <rect x="210" y="76" width="154" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="287" y="96" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-coverletter)">Research</text>
+                <text x="287" y="114" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Live web search</text>
+                <rect x="210" y="146" width="154" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="287" y="166" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-coverletter)">Planning</text>
+                <text x="287" y="184" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Brief + validate</text>
+                <rect x="210" y="216" width="154" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="287" y="236" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-coverletter)">Generate</text>
+                <text x="287" y="254" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Retry if invalid</text>
+                <rect x="210" y="286" width="154" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="287" y="306" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-coverletter)">Review</text>
+                <text x="287" y="324" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Human edits</text>
+                <line x1="287" y1="132" x2="287" y2="146" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a3)"/>
+                <line x1="287" y1="202" x2="287" y2="216" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a3)"/>
+                <line x1="287" y1="272" x2="287" y2="286" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a3)"/>
+              </svg>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-pipeline'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <!-- Card 4: Self-Serve Profile Agent -->
+          <div class="diagram-card">
+            <h3>Self-serve profile agent</h3>
+            <p class="card-desc">Facts change after onboarding too. Users update their own profile in plain language instead of editing config files by hand.</p>
+            <div class="card-svg-wrap">
+              <svg width="100%" viewBox="0 0 320 390" role="img">
+                <title>Self-serve profile agent diagram</title>
+                <desc>A user's request is interpreted by the agent, which updates the relevant SSOT file and invalidates the cache so the change is live.</desc>
+                <defs><marker id="a4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                <rect x="20" y="20" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">User request</text>
+                <text x="160" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Natural language ask</text>
+                <line x1="160" y1="76" x2="160" y2="106" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a4)"/>
+                <rect x="20" y="106" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Agent tool-use</text>
+                <text x="160" y="144" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Interprets + calls tools</text>
+                <line x1="160" y1="162" x2="160" y2="192" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a4)"/>
+                <rect x="20" y="192" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="212" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Update SSOT file</text>
+                <text x="160" y="230" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Writes the real config</text>
+                <line x1="160" y1="248" x2="160" y2="278" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a4)"/>
+                <rect x="20" y="278" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="298" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">Cache invalidated</text>
+                <text x="160" y="316" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Change is live</text>
+              </svg>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-agent'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <!-- Card 5: Portfolio Tracking -->
+          <div class="diagram-card">
+            <h3>Portfolio tracking</h3>
+            <p class="card-desc">Every application is more than a document. This tracks how it's actually progressing, alongside what was generated.</p>
+            <div class="card-svg-wrap">
+              <svg width="100%" viewBox="0 0 320 230" role="img">
+                <title>Portfolio tracking diagram</title>
+                <desc>A completed application feeds two parallel views: the Apps list, organized by materials, and the Tracker, organized by status.</desc>
+                <defs><marker id="a5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                <rect x="20" y="20" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-resume)">New application</text>
+                <text x="160" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Completed pipeline run</text>
+                <path d="M160 76 L160 98 L93 98 L93 120" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a5)"/>
+                <path d="M160 76 L160 98 L227 98 L227 120" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a5)"/>
+                <rect x="36" y="120" width="114" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="93" y="140" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="var(--cat-resume)">Apps list</text>
+                <text x="93" y="158" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">Materials</text>
+                <rect x="170" y="120" width="114" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="227" y="140" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="var(--cat-resume)">Tracker</text>
+                <text x="227" y="158" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">Status axis</text>
+              </svg>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-tracking'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <!-- Sub-cards divider -->
+          <div class="diagram-card divider-card">
+            <svg class="divider-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <h3>Inside the pipeline</h3>
+            <p>Six techniques the per-application pipeline relies on.</p>
+          </div>
+
+          <!-- Sub-card 1: RAG retrieval & dedup -->
+          <div class="diagram-card">
+            <h3>RAG retrieval &amp; dedup</h3>
+            <p class="card-desc">Retrieval finds relevant bullets and blocks the same underlying point from being selected twice.</p>
+            <div class="card-svg-wrap">
+              <svg width="100%" viewBox="0 0 320 390" role="img">
+                <title>RAG retrieval and dedup diagram</title>
+                <desc>The job description and fit scores drive candidate scoring, which is deduplicated by theme before the final blocks are selected.</desc>
+                <defs><marker id="a6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                <rect x="20" y="20" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">JD + fit scores</text>
+                <text x="160" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">What we're matching against</text>
+                <line x1="160" y1="76" x2="160" y2="106" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a6)"/>
+                <rect x="20" y="106" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Score candidates</text>
+                <text x="160" y="144" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Keyword + semantic blend</text>
+                <line x1="160" y1="162" x2="160" y2="192" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a6)"/>
+                <rect x="20" y="192" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="212" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Dedup by theme</text>
+                <text x="160" y="230" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">One bullet per collision</text>
+                <line x1="160" y1="248" x2="160" y2="278" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a6)"/>
+                <rect x="20" y="278" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="298" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Selected blocks</text>
+                <text x="160" y="316" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Goes to the draft</text>
+              </svg>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-rag'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <!-- Sub-card 2: Human-in-the-loop gates -->
+          <div class="diagram-card">
+            <h3>Human-in-the-loop gates</h3>
+            <p class="card-desc">Two different checkpoints. A human answers open questions, then a separate model reviews before anything is finalized.</p>
+            <div class="card-svg-wrap">
+              <svg width="100%" viewBox="0 0 320 390" role="img">
+                <title>Human-in-the-loop gates diagram</title>
+                <desc>Gap analysis surfaces questions for a human clarification gate, then an independent review from a different model precedes the reconciled draft.</desc>
+                <defs><marker id="a7" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                <rect x="20" y="20" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Gap analysis</text>
+                <text x="160" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Surfaces open questions</text>
+                <line x1="160" y1="76" x2="160" y2="106" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a7)"/>
+                <rect x="20" y="106" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Clarification gate</text>
+                <text x="160" y="144" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Human answers directly</text>
+                <line x1="160" y1="162" x2="160" y2="192" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a7)"/>
+                <rect x="20" y="192" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="212" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Independent review</text>
+                <text x="160" y="230" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">A different model, cold read</text>
+                <line x1="160" y1="248" x2="160" y2="278" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a7)"/>
+                <rect x="20" y="278" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="298" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Reconciled draft</text>
+                <text x="160" y="316" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Merges every input</text>
+              </svg>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-hitl'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <!-- Sub-card 3: Grounded company research -->
+          <div class="diagram-card">
+            <h3>Grounded company research</h3>
+            <p class="card-desc">Cover letters cite current facts about the company, pulled from a live web search.</p>
+            <div class="card-svg-wrap">
+              <svg width="100%" viewBox="0 0 320 390" role="img">
+                <title>Grounded company research diagram</title>
+                <desc>The company name from the job description triggers a live web search, producing current signal that gets cited in the cover letter brief.</desc>
+                <defs><marker id="a8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                <rect x="20" y="20" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Company name</text>
+                <text x="160" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">From the job description</text>
+                <line x1="160" y1="76" x2="160" y2="106" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a8)"/>
+                <rect x="20" y="106" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Live web search</text>
+                <text x="160" y="144" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Real citations, not guesses</text>
+                <line x1="160" y1="162" x2="160" y2="192" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a8)"/>
+                <rect x="20" y="192" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="212" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Extracted signal</text>
+                <text x="160" y="230" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Current, not historical</text>
+                <line x1="160" y1="248" x2="160" y2="278" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a8)"/>
+                <rect x="20" y="278" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="298" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Cited in brief</text>
+                <text x="160" y="316" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Feeds the cover letter</text>
+              </svg>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-research'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <!-- Sub-card 4: Structured output validation -->
+          <div class="diagram-card">
+            <h3>Structured output validation</h3>
+            <p class="card-desc">A generated response has to pass a schema check before it's used. If it fails, the pipeline retries instead of accepting something broken.</p>
+            <div class="card-svg-wrap">
+              <svg width="100%" viewBox="0 0 320 320" role="img">
+                <title>Structured output validation diagram</title>
+                <desc>A generated response is validated against a schema. Passing continues to the draft; failing retries, flagging as an error only after retries are exhausted.</desc>
+                <defs><marker id="a9" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                <rect x="20" y="20" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Generate</text>
+                <text x="160" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Model drafts a response</text>
+                <line x1="160" y1="76" x2="160" y2="106" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a9)"/>
+                <rect x="20" y="106" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Validate schema</text>
+                <text x="160" y="144" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Retries on failure</text>
+                <path d="M160 162 L160 184 L93 184 L93 206" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a9)"/>
+                <path d="M160 162 L160 184 L227 184 L227 206" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a9)"/>
+                <rect x="36" y="206" width="114" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="93" y="226" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="var(--cat-subcard)">Continue</text>
+                <text x="93" y="244" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">Passed check</text>
+                <rect x="170" y="206" width="114" height="56" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-dasharray="4 3"/>
+                <text x="227" y="226" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="var(--cat-subcard)">Flagged</text>
+                <text x="227" y="244" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">Retries maxed</text>
+              </svg>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-validation'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <!-- Sub-card 5: Multi-model orchestration -->
+          <div class="diagram-card">
+            <h3>Multi-model orchestration</h3>
+            <p class="card-desc">Five models across three providers are assigned by what the task actually needs and the LLM's relative strengths.</p>
+            <div class="card-svg-wrap">
+              <svg width="100%" viewBox="0 0 320 280" role="img">
+                <title>Multi-model orchestration diagram</title>
+                <desc>Five models across three providers route by task. Cheap extraction to Gemini flash-lite, constraint-heavy writing to Claude sonnet, independent review to Gemini flash, strict verification to GPT-4o mini, and GPT-4o as fallback.</desc>
+                <rect x="20" y="20" width="130" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="85" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="var(--cat-subcard)">Extraction</text>
+                <text x="85" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">Flash-lite</text>
+                <rect x="170" y="20" width="130" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="235" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="var(--cat-subcard)">Writing</text>
+                <text x="235" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">Claude sonnet</text>
+                <rect x="20" y="96" width="130" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="85" y="116" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="var(--cat-subcard)">Review</text>
+                <text x="85" y="134" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">Gemini flash</text>
+                <rect x="170" y="96" width="130" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="235" y="116" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="var(--cat-subcard)">Verification</text>
+                <text x="235" y="134" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">GPT-4o mini</text>
+                <rect x="95" y="172" width="130" height="56" rx="8" fill="var(--surface)" stroke="var(--border)" stroke-dasharray="4 3"/>
+                <text x="160" y="192" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="var(--cat-subcard)">Fallback</text>
+                <text x="160" y="210" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="var(--text-secondary)">GPT-4o backup</text>
+              </svg>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-multimodel'), this)">Expand for details &rarr;</button>
+          </div>
+
+          <!-- Sub-card 6: Context durability -->
+          <div class="diagram-card">
+            <h3>Context durability</h3>
+            <p class="card-desc">One object carries an application's state through every pipeline stage, and every draft gets saved, so nothing has to start over from scratch.</p>
+            <div class="card-svg-wrap">
+              <svg width="100%" viewBox="0 0 320 390" role="img">
+                <title>Context durability diagram</title>
+                <desc>One packet object is created per application, carries state through every stage, gets persisted to the database, and can be resumed at any stage without a full rerun.</desc>
+                <defs><marker id="a10" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                <rect x="20" y="20" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="40" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Packet created</text>
+                <text x="160" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">One object per application</text>
+                <line x1="160" y1="76" x2="160" y2="106" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a10)"/>
+                <rect x="20" y="106" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Carried through stages</text>
+                <text x="160" y="144" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">State accumulates</text>
+                <line x1="160" y1="162" x2="160" y2="192" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a10)"/>
+                <rect x="20" y="192" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="212" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Persisted to database</text>
+                <text x="160" y="230" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Every draft version saved</text>
+                <line x1="160" y1="248" x2="160" y2="278" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#a10)"/>
+                <rect x="20" y="278" width="280" height="56" rx="8" fill="var(--surface)" stroke="var(--border)"/>
+                <text x="160" y="298" text-anchor="middle" font-family="Inter,sans-serif" font-size="14" font-weight="600" fill="var(--cat-subcard)">Resumable</text>
+                <text x="160" y="316" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="var(--text-secondary)">Regenerate one stage, not all</text>
+              </svg>
+            </div>
+            <button class="expand-btn" onclick="showOverlay(document.getElementById('ov-context'), this)">Expand for details &rarr;</button>
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- View all overlay -->
+    <div class="view-all-overlay" id="view-all-overlay" onclick="if(event.target===this)closeViewAll()">
+      <div class="view-all-inner">
+        <div class="view-all-header">
+          <h3>Grid view</h3>
+          <button class="overlay-close" aria-label="Close" onclick="closeViewAll()">&times;</button>
+        </div>
+        <div class="view-all-grid" id="view-all-grid"></div>
+      </div>
+    </div>
+
+    <!-- Expand overlays -->
+    <div class="overlay-backdrop" id="ov-ssot" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-ssot'))">&times;</button>
+        <h3>SSOT &amp; guardrails</h3>
+        <p>Every fact starts in one file per user, a structured record of verified experience, not free text. Before any claim reaches a draft it passes through hard blocks on specific overclaims, evidence-level tiers that gate how confidently something can be stated, and negative prompting that tells the model what it is not allowed to do. A separate audit sweep checks something different: that the retrofit itself stays correct as more users are added.</p>
+      </div>
+    </div>
+    <div class="overlay-backdrop" id="ov-onboarding" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-onboarding'))">&times;</button>
+        <h3>Onboarding</h3>
+        <p>A new user's SSOT doesn't exist until they build it with the tool, through a conversational intake that extracts chapters, facts, and skills from what they actually tell it about their work. Nothing gets written as a real profile until the user reviews and confirms each draft fact themselves, so the source of truth is self-attested from the start. The same promotion mechanism that turns a draft into a live profile also governs updates after onboarding, so a new user and an established one go through the same trust gate.</p>
+      </div>
+    </div>
+    <div class="overlay-backdrop" id="ov-pipeline" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-pipeline'))">&times;</button>
+        <h3>Per-application pipeline</h3>
+        <p>Resume and cover letter generation are two separate tracks because they need different research, different structure, and different points where a human should weigh in. Both tracks read from and validate against the same SSOT and guardrails continuously through every stage, so a fact that gets blocked partway through drafting can't slip back in during a later revision. Each track also has its own human-in-the-loop point (a clarification gate and independent review for the resume, a review-and-revise cycle for the cover letter), because the two documents fail in different ways when left fully automated.</p>
+      </div>
+    </div>
+    <div class="overlay-backdrop" id="ov-agent" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-agent'))">&times;</button>
+        <h3>Self-serve profile agent</h3>
+        <p>After onboarding, a user's facts, skills, and bullets aren't static. The self-serve agent lets someone add, update, or retire an entry in plain language instead of hand-editing a config file, interpreting the request and writing directly to their real profile. One real engineering problem this surfaced: two different parts of the pipeline cached the same profile data independently, so an update could write successfully and still not show up until every cache was invalidated. That bug is fixed, but it's a good example of why "the agent wrote the file" and "the change is actually live" aren't automatically the same thing.</p>
+      </div>
+    </div>
+    <div class="overlay-backdrop" id="ov-tracking" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-tracking'))">&times;</button>
+        <h3>Portfolio tracking</h3>
+        <p>Every completed application feeds two different views. The Apps list tracks materials (what was generated and whether it's ready), while the Tracker follows real-world status (applied, interview, offer), independent of whether the materials themselves changed. Collapsing those into one view would hide the actual question someone has at any given moment: "do I have what I need" versus "where do I stand."</p>
+      </div>
+    </div>
+    <div class="overlay-backdrop" id="ov-rag" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-rag'))">&times;</button>
+        <h3>RAG retrieval &amp; dedup</h3>
+        <p>Each bullet in a user's inventory carries a list of themes, and retrieval blends keyword matching with a lightweight semantic score (15% weight) to rank candidates against the job description. The dedup step checks each bullet's first theme against everything already selected for that chapter, so two bullets making the same underlying point can't both get pulled into a draft just because they scored well independently. This ordering matters in practice: reordering a bullet's themes changes which one wins a collision when two bullets compete for the same slot.</p>
+      </div>
+    </div>
+    <div class="overlay-backdrop" id="ov-hitl" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-hitl'))">&times;</button>
+        <h3>Human-in-the-loop gates</h3>
+        <p>Gap analysis surfaces specific open questions rather than a generic "needs more detail" flag, and those go to the user directly through the clarification gate before drafting continues. Independent review is a separate step: a different model reads the draft cold, without having written it, because a model reviewing its own output tends to rubber-stamp it. The resume and cover letter tracks each have their own version of this pattern, tuned to how each document actually fails when left fully automated.</p>
+      </div>
+    </div>
+    <div class="overlay-backdrop" id="ov-research" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-research'))">&times;</button>
+        <h3>Grounded company research</h3>
+        <p>The company name comes straight from the parsed job description, and the research call uses real web-search grounding rather than asking the model to recall what it already knows. Verified live, the response includes actual citations tied to current events, not plausible-sounding text reconstructed from training data. This keeps a cover letter's company-specific detail honest even for companies the model has limited or outdated knowledge of.</p>
+      </div>
+    </div>
+    <div class="overlay-backdrop" id="ov-validation" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-validation'))">&times;</button>
+        <h3>Structured output validation</h3>
+        <p>Every generated response has to pass a schema check before the pipeline treats it as usable. A failure triggers a retry rather than a silent pass-through, and only after retries are exhausted does the pipeline mark it as a real failure instead of quietly returning something broken. This is the exact mechanism behind a real bug found and fixed in this project: a hard failure used to return with no status set at all, so a draft could sit at "pending" forever with no visible error.</p>
+      </div>
+    </div>
+    <div class="overlay-backdrop" id="ov-multimodel" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-multimodel'))">&times;</button>
+        <h3>Multi-model orchestration</h3>
+        <p>Every pipeline node has its model assignment documented with a real reason behind it. Cheap, structured tasks (parsing, scoring) run on Gemini's smallest model to keep per-call cost low on something that runs on every application. Constraint-heavy writing runs on Claude, independent review deliberately runs on a different model than whatever wrote the draft, and strict rule-based checks run on GPT-4o mini for being more literal than interpretive. GPT-4o itself is configured as the fallback for Claude-primary writing nodes, ready if Claude fails or a bakeoff comparison is needed.</p>
+      </div>
+    </div>
+    <div class="overlay-backdrop" id="ov-context" onclick="if(event.target===this)hideOverlay(this)">
+      <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-context'))">&times;</button>
+        <h3>Context durability</h3>
+        <p>One packet object is created per application and carries its state through every stage of the pipeline, from parsing through the final PDF, so nothing gets recomputed or re-passed by hand between steps. Every draft version gets persisted to the database along the way, which means regenerating one stage doesn't require rerunning the whole pipeline from scratch. This same durability model is also what exposed a real caching bug elsewhere in the project: state that's supposed to persist can still go stale if two different layers cache it independently without a shared invalidation path.</p>
+      </div>
+    </div>
+
+    <!-- E. Control boundaries -->
+    <section class="section section-tint">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Control boundaries</div>
+          <h2>Where the model stops and I start</h2>
+        </div>
+        <div class="triad-grid">
+          <div class="triad-col c1">
+            <h4>Model-controlled</h4>
+            <ul>
+              <li>Fit scoring against a job posting (<code>fit_scorer.py</code>)</li>
+              <li>Drafting and synthesis: resume bullets, cover letters (<code>resume_writer.py</code>, <code>cover_letter_writer.py</code>)</li>
+              <li>Gap reasoning (surfacing what's missing or thin, <code>gap_analyzer.py</code>)</li>
+              <li>Independent review (a second model critiquing the draft cold, <code>independent_reviewer.py</code>)</li>
+              <li>Rhetorical structure classification (<code>classify_transition_shape</code>)</li>
+              <li>Grounded research and interpretation (<code>company_research.py</code>)</li>
+            </ul>
+            <div class="why">These tasks need semantic judgment a rule can't encode. That same interpretive strength is a liability elsewhere, which is why it's paired with the tiers below rather than trusted alone.</div>
+          </div>
+          <div class="triad-col c2">
+            <h4>Deterministic</h4>
+            <ul>
+              <li>Forbidden-tool/phrase checks against <code>forbidden_claims.yaml</code>, pure pattern matching, no model call (<code>audit_resume.py</code>)</li>
+              <li>Theme-collision dedup in retrieval (<code>primary_theme = themes[0]</code>)</li>
+              <li>Schema/structure validation before a draft is accepted (<code>run_with_regeneration_gate</code>)</li>
+              <li><code>generation_status</code> field validation (<code>packet.py</code>)</li>
+              <li>Strict binary claim verification, deliberately run on GPT-4o mini rather than Claude. Real documented reason: "GPT tends to be more literal and rule-following on structured checks than Claude, which is more interpretive. Interpretive is good for writing, not for audit."</li>
+            </ul>
+            <div class="why">Correctness-critical, binary checks where consistency has to beat nuance. The project's own config explicitly chose a less interpretive model for this specific reason.</div>
+          </div>
+          <div class="triad-col c3">
+            <h4>Human-controlled</h4>
+            <ul>
+              <li><strong>Resume: transparent override.</strong> I can see the actual reasoning behind every bullet/skill selection (real scoring shown via the Compare drawers/Skills tab) and manually override any selection via drag-and-drop, without breaking anything downstream. It's built to be inspected and corrected.</li>
+              <li><strong>Cover letter: active co-authorship.</strong> I judge whether specific examples or transitions genuinely hold up for this application and add my own voice. It's the same reason I write my own cover letters by hand (see Results).</li>
+              <li>Corrections can durably change the source of truth. Answering a gap or adding a missing fact updates the real SSOT, so future applications benefit too.</li>
+              <li>My answer can be reused without re-asking (<code>apply_to_similar</code> flag). Judgment compounds across a batch instead of being spent once per instance.</li>
+              <li>Explicit reject-and-regenerate is its own control, distinct from editing. When something is wrong, the move is a fresh attempt.</li>
+              <li>Presentation/format choice (which visual preset renders) is a separate axis from content control entirely.</li>
+              <li>Submitting the actual application (entirely outside the system).</li>
+            </ul>
+            <div class="why">These are claims about my own career, or irreversible external actions. The system can draft and accelerate, but it doesn't have standing to represent my story or act on my behalf without my sign-off.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- F. Key decisions -->
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Key decisions</div>
+          <h2>Decisions that shaped the build</h2>
+        </div>
+        <div class="card-grid">
+          <div class="decision-card">Final claim acceptance is never automated. Every fact that reaches a live profile, and every application that gets submitted, requires a human sign-off (ties directly to Control Boundaries).</div>
+          <div class="decision-card">Model routing is config-driven. Five models across three providers, each assigned by task type with documented reasoning.</div>
+          <div class="decision-card">Resume and cover letter stayed two separate tracks. They need different research, different structure, and different points where I need to weigh in.</div>
+          <div class="decision-card">Self-service onboarding was deliberately deferred, prioritizing getting my one real user (Grace) live and useful during her actual job search over building generalized onboarding infrastructure she didn't need yet.</div>
+          <div class="decision-card">Visual presentation was tuned per real user. My own dense format and Grace's cleaner, label-free format come from the same underlying data, deliberately rendered differently because our actual preferences differ.</div>
+          <div class="decision-card">Built and positioned as a companion tool for selective use, not a mass-application pipeline. The technical capacity for bulk generation exists (see Results), but the tool is designed around deliberate, per-application judgment rather than volume.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- G. Evaluation / reliability -->
+    <section class="section section-tint" id="evaluation">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Evaluation &amp; reliability</div>
+          <h2>What keeps it accurate and reliable</h2>
+        </div>
+        <div class="prose-block" style="text-align:center; margin-bottom: var(--space-5);">
+          <p>Run on every generation:</p>
+        </div>
+        <div class="card-grid" style="margin-bottom: var(--space-8);">
+          <div class="decision-card">Deterministic checks: schema validation, forbidden-claim/phrase checks, and word-count/format rules run on every draft.</div>
+          <div class="decision-card">A judgment-based semantic audit: a second model checks paragraph-level rules a string match can't catch.</div>
+          <div class="decision-card">Independent review: a separate model, reading the draft cold, acting as a critical reviewer rather than the model grading its own work.</div>
+          <div class="decision-card">A regeneration gate: retries with targeted feedback up to a limit, only failing openly after attempts are exhausted.</div>
+        </div>
+
+        <div class="bug-story">
+          <h4>1. Silent generation failure (found in live use)</h4>
+          <div class="timeline">
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Specify</div><div class="timeline-step-detail">A hard generation failure must be visible, never indistinguishable from "still processing"</div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Test</div><div class="timeline-step-detail">Cover-letter generation on my live account</div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Observe</div><div class="timeline-step-detail">A draft sat at "pending" with no letter text and no error</div></div>
+            <div class="timeline-step is-fail"><div class="timeline-dot"></div><div class="timeline-step-label">Fail</div><div class="timeline-step-detail">The hard-failure branch never set <code>generation_status</code>, and the success path never set it either</div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Repair</div><div class="timeline-step-detail">Both paths now set an explicit status; frontend surfaces a real error message</div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Verify</div><div class="timeline-step-detail">Reproduced the same underlying model failure on retry, confirmed it was now correctly recorded and shown instead of silently swallowed</div></div>
+          </div>
+        </div>
+
+        <div class="bug-story">
+          <h4>2. Theme-collision retrieval bug</h4>
+          <div class="timeline">
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Specify</div><div class="timeline-step-detail">Two bullets making the same underlying point shouldn't block each other from selection when only one collides</div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Test</div><div class="timeline-step-detail">Retrieval run against job postings for both synthetic persona builds</div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Observe</div><div class="timeline-step-detail">A higher-scoring bullet failed to appear despite a strong score</div></div>
+            <div class="timeline-step is-fail"><div class="timeline-dot"></div><div class="timeline-step-label">Fail</div><div class="timeline-step-detail"><code>primary_theme = themes[0]</code> let a first-theme collision block a bullet regardless of its other themes</div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Repair</div><div class="timeline-step-detail">Reordered theme lists so the distinguishing theme leads</div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Verify</div><div class="timeline-step-detail">Reran retrieval, confirmed bullet count reached its true ceiling (e.g. 15/15)</div></div>
+          </div>
+        </div>
+
+        <div class="bug-story">
+          <h4>3. PDF contact-column overflow</h4>
+          <div class="timeline">
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Specify</div><div class="timeline-step-detail">Contact info must never visually overlap the neighboring column</div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Test</div><div class="timeline-step-detail">Exported PDFs across different name/email lengths</div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Observe</div><div class="timeline-step-detail">One persona's email visually overlapped into the profile column</div></div>
+            <div class="timeline-step is-fail"><div class="timeline-dot"></div><div class="timeline-step-label">Fail</div><div class="timeline-step-detail">A fixed-width flexbox column had no overflow protection (<code>min-width: auto</code> default)</div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Repair</div><div class="timeline-step-detail"><code>min-width: 0; overflow-wrap: break-word;</code></div></div>
+            <div class="timeline-step"><div class="timeline-dot"></div><div class="timeline-step-label">Verify</div><div class="timeline-step-detail">PyMuPDF-measured bounding box coordinates confirmed clear separation, not visual guessing</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H. Results -->
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Results</div>
+          <h2>What's real, what's estimated, what's next</h2>
+        </div>
+        <div class="results-block">
+          <div class="result-item">
+            <div class="state-badge">Demonstrated</div>
+            <p>The full pipeline runs end-to-end, job posting in, tailored resume and cover letter PDF out, confirmed across multiple real and synthetic profiles with different backgrounds and formatting needs.</p>
+          </div>
+          <div class="result-item">
+            <div class="state-badge">Self-use</div>
+            <p>I use the resume generator for my own job search, and I write my own cover letters by hand. Hand-tailoring each cover letter avoids losing my voice or over-generalizing across different applications.</p>
+          </div>
+          <div class="result-item">
+            <div class="state-badge">External validation</div>
+            <p>Grace, a third-party user, adopted the tool during her active job search, addressing a genuine capacity and burnout constraint. This is one external user, not a broadly validated sample, and I onboarded her personally rather than through self-service.</p>
+          </div>
+          <div class="result-item">
+            <div class="state-badge">Current estimate</div>
+            <p>The pipeline's technical capacity extends well beyond how I currently use it. A full application (resume plus cover letter) runs about 12 sequential model calls across both tracks: small structured-extraction calls taking a few seconds each, the larger constraint-heavy writing calls (the cover letter draft in particular) taking longer. Roughly, that's 2 to 4 minutes of API processing time per application, estimated from the call architecture. Paired with bulk import of saved job postings, the practical scale is bounded by how many postings I choose to bring in and how much I want to review or edit. I designed and use it as a selective job-application co-pilot. It doesn't replace hand-tailoring a cover letter to a specific opportunity, building relationships through networking, or the slower work of actually strengthening my position through certifications or projects.</p>
+          </div>
+          <div class="result-item">
+            <div class="state-badge">Future goal</div>
+            <p>Two friends have expressed interest in using the tool. Finishing self-service onboarding, most of which is already reflected in the self-serve profile agent, would let them set up their own profiles directly. The intent is to offer the tool and support to people who need it. Commercializing it isn't the goal, which is part of why most of the code is public on GitHub.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- I. Ownership / AI-assistance -->
+    <section class="section section-tint">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Ownership &amp; AI-assistance</div>
+          <h2>What I did, what AI did, what I checked</h2>
+        </div>
+        <div class="triad-grid">
+          <div class="triad-col c1">
+            <h4>I owned</h4>
+            <ul>
+              <li>The higher-level workflow/architecture (the actual system design)</li>
+              <li>Design decisions throughout</li>
+              <li>QA</li>
+              <li>Prompt engineering</li>
+              <li>Debug-pivot decisions: when something broke, deciding whether a durable fix or a quick fix was the right call</li>
+              <li>Being the first end user and tuning the system based on real output quality (e.g., recognizing cover-letter generation needed an extensive constraint set to produce a format and voice close enough to be usable)</li>
+              <li>Final decision authority on every consequential fork in the build</li>
+              <li>Protecting my own voice, declining to let AI draft my personal narrative and instead writing it myself, using AI only for structural feedback</li>
+              <li>Scope discipline: deciding what to build now, and what to deliberately leave out (self-onboarding, certain UI polish)</li>
+            </ul>
+          </div>
+          <div class="triad-col c2">
+            <h4>AI-assisted</h4>
+            <ul>
+              <li>Code generation and implementation</li>
+              <li>Refactoring and review</li>
+              <li>Documentation</li>
+              <li>Debugging suggestions</li>
+              <li>Infrastructure/deployment execution support (diagnosing DNS and HTTPS issues during the real cloud deployment)</li>
+            </ul>
+          </div>
+          <div class="triad-col c3">
+            <h4>I verified/accepted</h4>
+            <ul>
+              <li>Independently re-checked AI's own verification claims rather than accepting them at face value (caught a real gap in a security sweep this way)</li>
+              <li>Caught factual/terminology errors directly (a miscounted model, an invented term)</li>
+              <li>Reproduced and confirmed each bug fix live before accepting it as resolved</li>
+              <li>Accepted or rejected every proposed design at each fork, rather than deferring to whatever was proposed</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- J. Limitations / inspect deeper -->
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Limitations</div>
+          <h2>What this doesn't prove yet</h2>
+        </div>
+        <div class="limits-block">
+          <p>Self-service onboarding is not yet built. The current biggest constraint is extending the tool use to new users without my direct involvement.</p>
+          <p>No formal external evaluation study yet. One external user so far, not a broader sample.</p>
+          <p>The tool won't do certain things, and isn't meant to. It doesn't build a user's network, improve their actual qualifications, or replace the judgment only they have about which opportunities are worth pursuing.</p>
+          <p>The quality of what it generates depends on the quality of what a user gives it. Thin or vague facts produce thin or vague resumes and cover letters. The self-serve agent exists partly to help sharpen facts, skills, bullets, and stories toward concrete, evidence-backed claims instead of vague trait statements, but it can only work with what's actually there. Users are encouraged to gather their own outside signal, direct feedback specific to their industry, to confirm or challenge whether this approach is actually working for them.</p>
+          <p>It's built to remove repetitive drafting labor. It was never meant to replace the parts of a job search that require the person doing it.</p>
+          <div class="inspect-links">
+            <a href="https://github.com/Dave-Domingo/job-application-pipeline" target="_blank" rel="noopener">GitHub</a> &middot; <a href="#evaluation">Evaluation</a> &middot; Screenshots (coming with launch)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container site-footer-inner">
+        <div class="footer-links">
+          <a href="https://github.com/Dave-Domingo" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/raleighwithdave" target="_blank" rel="noopener">LinkedIn</a>
+          <span class="footer-link-disabled">YouTube <span class="soon-tag">Soon</span></span>
+          <a href="contact.html">Contact</a>
+          <a href="#top" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">Back to top</a>
+        </div>
+        <div class="footer-meta">
+          <p>&copy; 2026 Dave Domingo</p>
+          <p>This page was coded with Claude Code.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      var carousel = document.getElementById('top-carousel');
+
+      function showOverlay(el, triggerEl) {
+        el._triggerEl = triggerEl || document.activeElement;
+        el.classList.add('open');
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            el.classList.add('visible');
+            var closeBtn = el.querySelector('.overlay-close');
+            if (closeBtn) closeBtn.focus();
+          });
+        });
+      }
+
+      function hideOverlay(el) {
+        el.classList.remove('visible');
+        setTimeout(function() {
+          el.classList.remove('open');
+          if (el._triggerEl) {
+            el._triggerEl.focus();
+            el._triggerEl = null;
+          }
+        }, 250);
+      }
+
+      function getActiveOverlay() {
+        var cardOverlay = document.querySelector('.overlay-backdrop.open');
+        if (cardOverlay) return cardOverlay;
+        var viewAll = document.getElementById('view-all-overlay');
+        if (viewAll.classList.contains('open')) return viewAll;
+        return null;
+      }
+
+      function getFocusableElements(container) {
+        return Array.prototype.slice.call(
+          container.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')
+        ).filter(function(el) { return el.offsetParent !== null; });
+      }
+
+      function toggleWorkDropdown(btn) {
+        var menu = btn.nextElementSibling;
+        var isOpen = !menu.hidden;
+        closeAllDropdowns();
+        if (!isOpen) {
+          menu.hidden = false;
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      }
+
+      function closeAllDropdowns() {
+        document.querySelectorAll('.nav-dropdown-menu').forEach(function(menu) {
+          menu.hidden = true;
+          menu.previousElementSibling.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-dropdown')) closeAllDropdowns();
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          var openOverlay = getActiveOverlay();
+          if (openOverlay) { hideOverlay(openOverlay); return; }
+          closeAllDropdowns();
+          return;
+        }
+        if (e.key === 'Tab') {
+          var active = getActiveOverlay();
+          if (!active) return;
+          var focusable = getFocusableElements(active);
+          if (!focusable.length) return;
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      function scrollCarousel(direction) {
+        var cards = Array.prototype.slice.call(carousel.querySelectorAll('.diagram-card'));
+        var current = carousel.scrollLeft;
+        var target = null;
+        if (direction > 0) {
+          for (var i = 0; i < cards.length; i++) {
+            if (cards[i].offsetLeft > current + 10) { target = cards[i]; break; }
+          }
+        } else {
+          for (var j = cards.length - 1; j >= 0; j--) {
+            if (cards[j].offsetLeft < current - 10) { target = cards[j]; break; }
+          }
+        }
+        if (target) {
+          carousel.scrollTo({ left: target.offsetLeft - 4, behavior: 'smooth' });
+        }
+      }
+
+      function updateArrows() {
+        var prevBtn = document.querySelector('.carousel-arrow.prev');
+        var nextBtn = document.querySelector('.carousel-arrow.next');
+        var leftFade = document.querySelector('.carousel-fade.left');
+        var rightFade = document.querySelector('.carousel-fade.right');
+        var atStart = carousel.scrollLeft <= 4;
+        var atEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 4;
+        prevBtn.disabled = atStart;
+        nextBtn.disabled = atEnd;
+        leftFade.classList.toggle('visible', !atStart);
+        rightFade.classList.toggle('visible', !atEnd);
+      }
+
+      function openViewAll() {
+        var grid = document.getElementById('view-all-grid');
+        grid.innerHTML = '';
+        carousel.querySelectorAll('.diagram-card').forEach(function(card) {
+          grid.appendChild(card.cloneNode(true));
+        });
+        showOverlay(document.getElementById('view-all-overlay'));
+      }
+
+      function closeViewAll() {
+        hideOverlay(document.getElementById('view-all-overlay'));
+      }
+
+      carousel.addEventListener('scroll', updateArrows);
+      window.addEventListener('resize', updateArrows);
+      updateArrows();
+
+      function alignTriadWhys() {
+        document.querySelectorAll('.triad-grid').forEach(function(row) {
+          var whys = row.querySelectorAll('.why');
+          if (!whys.length) return;
+          whys.forEach(function(w) { w.style.minHeight = ''; });
+          var maxHeight = Math.max.apply(null, Array.prototype.map.call(whys, function(w) { return w.getBoundingClientRect().height; }));
+          whys.forEach(function(w) { w.style.minHeight = maxHeight + 'px'; });
+        });
+      }
+      alignTriadWhys();
+      window.addEventListener('resize', alignTriadWhys);
+
+      function openCardTerm(overlayId) {
+        var card = document.querySelector('[onclick*="' + overlayId + '"].expand-btn');
+        if (card) {
+          card.closest('.diagram-card').scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+        showOverlay(document.getElementById(overlayId));
+      }
+    </script>
+
+  </body>
+</html>
