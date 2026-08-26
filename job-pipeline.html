@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Application Pipeline | Dave Domingo</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="css/tokens.css?v=5">
-    <link rel="stylesheet" href="css/base.css?v=3">
+    <link rel="stylesheet" href="css/tokens.css?v=6">
+    <link rel="stylesheet" href="css/base.css?v=4">
     <link rel="stylesheet" href="css/shared.css?v=2">
     <link rel="stylesheet" href="css/job-pipeline.css?v=5">
   </head>
@@ -486,10 +486,10 @@
     </section>
 
     <!-- View all overlay -->
-    <div class="view-all-overlay" id="view-all-overlay" onclick="if(event.target===this)closeViewAll()">
+    <div class="view-all-overlay" id="view-all-overlay" role="dialog" aria-modal="true" aria-labelledby="view-all-title" onclick="if(event.target===this)closeViewAll()">
       <div class="view-all-inner">
         <div class="view-all-header">
-          <h3>Grid view</h3>
+          <h3 id="view-all-title">Grid view</h3>
           <button class="overlay-close" aria-label="Close" onclick="closeViewAll()">&times;</button>
         </div>
         <div class="view-all-grid" id="view-all-grid"></div>
@@ -497,69 +497,69 @@
     </div>
 
     <!-- Expand overlays -->
-    <div class="overlay-backdrop" id="ov-ssot" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-ssot" role="dialog" aria-modal="true" aria-labelledby="ov-ssot-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-ssot'))">&times;</button>
-        <h3>SSOT &amp; guardrails</h3>
+        <h3 id="ov-ssot-title">SSOT &amp; guardrails</h3>
         <p>Every fact starts in one file per user, a structured record of verified experience, not free text. Before any claim reaches a draft it passes through hard blocks on specific overclaims, evidence-level tiers that gate how confidently something can be stated, and negative prompting that tells the model what it is not allowed to do. A separate audit sweep checks something different: that the retrofit itself stays correct as more users are added.</p>
       </div>
     </div>
-    <div class="overlay-backdrop" id="ov-onboarding" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-onboarding" role="dialog" aria-modal="true" aria-labelledby="ov-onboarding-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-onboarding'))">&times;</button>
-        <h3>Onboarding</h3>
+        <h3 id="ov-onboarding-title">Onboarding</h3>
         <p>A new user's SSOT doesn't exist until they build it with the tool, through a conversational intake that extracts chapters, facts, and skills from what they actually tell it about their work. Nothing gets written as a real profile until the user reviews and confirms each draft fact themselves, so the source of truth is self-attested from the start. The same promotion mechanism that turns a draft into a live profile also governs updates after onboarding, so a new user and an established one go through the same trust gate.</p>
       </div>
     </div>
-    <div class="overlay-backdrop" id="ov-pipeline" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-pipeline" role="dialog" aria-modal="true" aria-labelledby="ov-pipeline-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-pipeline'))">&times;</button>
-        <h3>Per-application pipeline</h3>
+        <h3 id="ov-pipeline-title">Per-application pipeline</h3>
         <p>Resume and cover letter generation are two separate tracks because they need different research, different structure, and different points where a human should weigh in. Both tracks read from and validate against the same SSOT and guardrails continuously through every stage, so a fact that gets blocked partway through drafting can't slip back in during a later revision. Each track also has its own human-in-the-loop point (a clarification gate and independent review for the resume, a review-and-revise cycle for the cover letter), because the two documents fail in different ways when left fully automated.</p>
       </div>
     </div>
-    <div class="overlay-backdrop" id="ov-agent" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-agent" role="dialog" aria-modal="true" aria-labelledby="ov-agent-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-agent'))">&times;</button>
-        <h3>Self-serve profile agent</h3>
+        <h3 id="ov-agent-title">Self-serve profile agent</h3>
         <p>After onboarding, a user's facts, skills, and bullets aren't static. The self-serve agent lets someone add, update, or retire an entry in plain language instead of hand-editing a config file, interpreting the request and writing directly to their real profile. One real engineering problem this surfaced: two different parts of the pipeline cached the same profile data independently, so an update could write successfully and still not show up until every cache was invalidated. That bug is fixed, but it's a good example of why "the agent wrote the file" and "the change is actually live" aren't automatically the same thing.</p>
       </div>
     </div>
-    <div class="overlay-backdrop" id="ov-tracking" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-tracking" role="dialog" aria-modal="true" aria-labelledby="ov-tracking-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-tracking'))">&times;</button>
-        <h3>Portfolio tracking</h3>
+        <h3 id="ov-tracking-title">Portfolio tracking</h3>
         <p>Every completed application feeds two different views. The Apps list tracks materials (what was generated and whether it's ready), while the Tracker follows real-world status (applied, interview, offer), independent of whether the materials themselves changed. Collapsing those into one view would hide the actual question someone has at any given moment: "do I have what I need" versus "where do I stand."</p>
       </div>
     </div>
-    <div class="overlay-backdrop" id="ov-rag" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-rag" role="dialog" aria-modal="true" aria-labelledby="ov-rag-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-rag'))">&times;</button>
-        <h3>RAG retrieval &amp; dedup</h3>
+        <h3 id="ov-rag-title">RAG retrieval &amp; dedup</h3>
         <p>Each bullet in a user's inventory carries a list of themes, and retrieval blends keyword matching with a lightweight semantic score (15% weight) to rank candidates against the job description. The dedup step checks each bullet's first theme against everything already selected for that chapter, so two bullets making the same underlying point can't both get pulled into a draft just because they scored well independently. This ordering matters in practice: reordering a bullet's themes changes which one wins a collision when two bullets compete for the same slot.</p>
       </div>
     </div>
-    <div class="overlay-backdrop" id="ov-hitl" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-hitl" role="dialog" aria-modal="true" aria-labelledby="ov-hitl-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-hitl'))">&times;</button>
-        <h3>Human-in-the-loop gates</h3>
+        <h3 id="ov-hitl-title">Human-in-the-loop gates</h3>
         <p>Gap analysis surfaces specific open questions rather than a generic "needs more detail" flag, and those go to the user directly through the clarification gate before drafting continues. Independent review is a separate step: a different model reads the draft cold, without having written it, because a model reviewing its own output tends to rubber-stamp it. The resume and cover letter tracks each have their own version of this pattern, tuned to how each document actually fails when left fully automated.</p>
       </div>
     </div>
-    <div class="overlay-backdrop" id="ov-research" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-research" role="dialog" aria-modal="true" aria-labelledby="ov-research-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-research'))">&times;</button>
-        <h3>Grounded company research</h3>
+        <h3 id="ov-research-title">Grounded company research</h3>
         <p>The company name comes straight from the parsed job description, and the research call uses real web-search grounding rather than asking the model to recall what it already knows. Verified live, the response includes actual citations tied to current events, not plausible-sounding text reconstructed from training data. This keeps a cover letter's company-specific detail honest even for companies the model has limited or outdated knowledge of.</p>
       </div>
     </div>
-    <div class="overlay-backdrop" id="ov-validation" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-validation" role="dialog" aria-modal="true" aria-labelledby="ov-validation-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-validation'))">&times;</button>
-        <h3>Structured output validation</h3>
+        <h3 id="ov-validation-title">Structured output validation</h3>
         <p>Every generated response has to pass a schema check before the pipeline treats it as usable. A failure triggers a retry rather than a silent pass-through, and only after retries are exhausted does the pipeline mark it as a real failure instead of quietly returning something broken. This is the exact mechanism behind a real bug found and fixed in this project: a hard failure used to return with no status set at all, so a draft could sit at "pending" forever with no visible error.</p>
       </div>
     </div>
-    <div class="overlay-backdrop" id="ov-multimodel" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-multimodel" role="dialog" aria-modal="true" aria-labelledby="ov-multimodel-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-multimodel'))">&times;</button>
-        <h3>Multi-model orchestration</h3>
+        <h3 id="ov-multimodel-title">Multi-model orchestration</h3>
         <p>Every pipeline node has its model assignment documented with a real reason behind it. Cheap, structured tasks (parsing, scoring) run on Gemini's smallest model to keep per-call cost low on something that runs on every application. Constraint-heavy writing runs on Claude, independent review deliberately runs on a different model than whatever wrote the draft, and strict rule-based checks run on GPT-4o mini for being more literal than interpretive. GPT-4o itself is configured as the fallback for Claude-primary writing nodes, ready if Claude fails or a bakeoff comparison is needed.</p>
       </div>
     </div>
-    <div class="overlay-backdrop" id="ov-context" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-context" role="dialog" aria-modal="true" aria-labelledby="ov-context-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-context'))">&times;</button>
-        <h3>Context durability</h3>
+        <h3 id="ov-context-title">Context durability</h3>
         <p>One packet object is created per application and carries its state through every stage of the pipeline, from parsing through the final PDF, so nothing gets recomputed or re-passed by hand between steps. Every draft version gets persisted to the database along the way, which means regenerating one stage doesn't require rerunning the whole pipeline from scratch. This same durability model is also what exposed a real caching bug elsewhere in the project: state that's supposed to persist can still go stale if two different layers cache it independently without a shared invalidation path.</p>
       </div>
     </div>

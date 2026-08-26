@@ -117,8 +117,10 @@ Everything below lives in `shared.css`. One line each on when to reach for it.
 
 - Display/heading font is Fraunces (serif); body and UI text is Inter
   (sans); inline code/labels use IBM Plex Mono where present. All three are
-  declared once in `base.css`'s `@import` — don't add a font import to a
-  page-specific file.
+  self-hosted via `@font-face` declared once in `tokens.css`, pointing at
+  `fonts/*.woff2` — don't add a font import or a duplicate `@font-face` to
+  a page-specific file. Only the weights actually used site-wide are
+  included; check usage before adding a new weight.
 - `.eyebrow` (11px, uppercase, accent-colored, `--font-sans`) always
   precedes an `<h2>` (or the hero `<h1>`) inside `.section-heading`. It is
   the one piece of chrome every section on every page shares — if a new
