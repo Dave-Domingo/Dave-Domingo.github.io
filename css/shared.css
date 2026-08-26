@@ -179,7 +179,7 @@
 .triad-col.c2 { --triad-color: var(--cat-coverletter); }
 .triad-col.c3 { --triad-color: var(--cat-subcard); }
 
-.triad-col h4 {
+.triad-col h3 {
   font-family: var(--font-sans);
   font-weight: 500;
   font-size: 16px;
@@ -304,7 +304,7 @@ button.term-pill:hover {
   padding: var(--space-6);
 }
 
-.bug-story h4 {
+.bug-story h3 {
   font-family: var(--font-sans);
   font-weight: 500;
   font-size: 15px;

@@ -200,7 +200,7 @@
         </div>
         <div class="triad-grid">
           <div class="triad-col c1">
-            <h4>AI supports</h4>
+            <h3>AI supports</h3>
             <ul>
               <li>Discovery and query generation</li>
               <li>Extraction and coding suggestions</li>
@@ -211,7 +211,7 @@
             </ul>
           </div>
           <div class="triad-col c2">
-            <h4>AI may not</h4>
+            <h3>AI may not</h3>
             <ul>
               <li>Treat its own memory as evidence</li>
               <li>Fabricate support for a claim</li>
@@ -223,7 +223,7 @@
             </ul>
           </div>
           <div class="triad-col c3">
-            <h4>Human authority retains</h4>
+            <h3>Human authority retains</h3>
             <ul>
               <li>Defining and approving the decision problem</li>
               <li>Approving consequential assumptions or changes</li>
@@ -267,7 +267,7 @@
           <p style="text-align:center;">A convergence loop runs the same review pass repeatedly, finding and repairing faults or gaps until the delta between passes reaches zero. This page is itself a product of that loop. The same research framework it describes governed how this page's own content and structure took shape.</p>
         </div>
         <div class="bug-story">
-          <h4>Convergence record excerpt</h4>
+          <h3>Convergence record excerpt</h3>
           <p class="bs-note">Four of the thirteen convergence rounds behind this page.</p>
           <div class="timeline">
             <div class="timeline-step">
@@ -364,10 +364,10 @@
     </section>
 
     <!-- View all overlay -->
-    <div class="view-all-overlay" id="view-all-overlay" onclick="if(event.target===this)closeViewAll()">
+    <div class="view-all-overlay" id="view-all-overlay" role="dialog" aria-modal="true" aria-labelledby="view-all-title" onclick="if(event.target===this)closeViewAll()">
       <div class="view-all-inner">
         <div class="view-all-header">
-          <h3>Grid view</h3>
+          <h3 id="view-all-title">Grid view</h3>
           <button class="overlay-close" aria-label="Close" onclick="closeViewAll()">&times;</button>
         </div>
         <div class="view-all-grid" id="view-all-grid"></div>
@@ -375,9 +375,9 @@
     </div>
 
     <!-- Expand overlays -->
-    <div class="overlay-backdrop" id="ov-study-portfolio" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-study-portfolio" role="dialog" aria-modal="true" aria-labelledby="ov-study-portfolio-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card wide"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-study-portfolio'))">&times;</button>
-        <h3>Portfolio Architecture Research</h3>
+        <h3 id="ov-study-portfolio-title">Portfolio Architecture Research</h3>
         <div class="study-status-row">
           <div class="state-badge">Research complete</div>
           <p class="study-status-note">Already governing this site's structure.</p>
@@ -418,9 +418,9 @@
       </div>
     </div>
 
-    <div class="overlay-backdrop" id="ov-study-agency" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-study-agency" role="dialog" aria-modal="true" aria-labelledby="ov-study-agency-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card wide"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-study-agency'))">&times;</button>
-        <h3>AI Value Realization in Website Design Agencies</h3>
+        <h3 id="ov-study-agency-title">AI Value Realization in Website Design Agencies</h3>
         <div class="study-status-row">
           <div class="state-badge">Research-centered strategy case</div>
           <p class="study-status-note">No implementation or measured outcome yet.</p>
@@ -461,9 +461,9 @@
       </div>
     </div>
 
-    <div class="overlay-backdrop" id="ov-study-governance" onclick="if(event.target===this)hideOverlay(this)">
+    <div class="overlay-backdrop" id="ov-study-governance" role="dialog" aria-modal="true" aria-labelledby="ov-study-governance-title" onclick="if(event.target===this)hideOverlay(this)">
       <div class="overlay-card wide"><button class="overlay-close" aria-label="Close" onclick="hideOverlay(document.getElementById('ov-study-governance'))">&times;</button>
-        <h3>Enterprise Agent Governance</h3>
+        <h3 id="ov-study-governance-title">Enterprise Agent Governance</h3>
         <div class="study-status-row">
           <div class="state-badge">Research package complete</div>
           <p class="study-status-note">Implementation not yet demonstrated.</p>
@@ -537,7 +537,7 @@
       </div>
     </footer>
 
-    <script src="js/carousel.js"></script>
+    <script src="js/carousel.js?v=2"></script>
     <script>
       function toggleWorkDropdown(btn) {
         var menu = btn.nextElementSibling;

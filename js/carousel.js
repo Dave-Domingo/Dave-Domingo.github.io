@@ -67,6 +67,10 @@
   var carousel = document.getElementById('top-carousel');
 
   if (carousel) {
+    var prefersReducedMotion = function () {
+      return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    };
+
     var scrollCarousel = function (direction) {
       var cards = Array.prototype.slice.call(carousel.querySelectorAll('.diagram-card'));
       var current = carousel.scrollLeft;
@@ -81,7 +85,7 @@
         }
       }
       if (target) {
-        carousel.scrollTo({ left: target.offsetLeft - 4, behavior: 'smooth' });
+        carousel.scrollTo({ left: target.offsetLeft - 4, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
       }
     };
 
