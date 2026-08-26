@@ -115,8 +115,20 @@
       hideOverlay(document.getElementById('view-all-overlay'));
     };
 
-    carousel.addEventListener('scroll', updateArrows);
-    window.addEventListener('resize', updateArrows);
+    var scheduleUpdateArrows = (function () {
+      var ticking = false;
+      return function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          updateArrows();
+          ticking = false;
+        });
+      };
+    })();
+
+    carousel.addEventListener('scroll', scheduleUpdateArrows);
+    window.addEventListener('resize', scheduleUpdateArrows);
     updateArrows();
 
     window.scrollCarousel = scrollCarousel;
