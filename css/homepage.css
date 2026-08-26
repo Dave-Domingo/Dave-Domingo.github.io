@@ -1,5 +1,5 @@
 /* Homepage — page-specific component styles.
-   Shared section/button/prose rules now live in shared.css. */
+   Shared section/button/prose rules live in core.css's SHARED section. */
 
 .hero h1 {
   max-width: 640px;

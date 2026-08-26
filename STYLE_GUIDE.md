@@ -1,6 +1,6 @@
 # Style Guide
 
-This is the narrative companion to `css/shared.css`. The CSS is the enforceable
+This is the narrative companion to `css/core.css`. The CSS is the enforceable
 source of truth — if this doc and the CSS ever disagree, the CSS is what's
 actually running and should be treated as correct until this doc is updated.
 This doc exists for the judgment calls the CSS can't encode on its own: when
@@ -8,38 +8,43 @@ to reach for which component, and why the system is shaped the way it is.
 
 ## File layout
 
-- `css/tokens.css` — color, type, spacing, radius, motion variables. Every
-  page loads this first. Never hardcode a color or spacing value that a token
-  already covers.
-- `css/base.css` — element resets, `body`/`h1-h3`/`code`/`a` defaults, the
-  site header/footer/nav-dropdown, `.container`.
-- `css/shared.css` — components used (or reasonably likely to be reused) on
-  more than one page. Loads after `base.css`, before the page's own
-  stylesheet.
+- `css/core.css` — tokens, resets, and shared components in one file, loaded
+  by every page first. It used to be three separate files (`tokens.css`,
+  `base.css`, `shared.css`); they were merged 2026-08-26 because every page
+  loaded all three anyway, and three small render-blocking requests measurably
+  delayed first paint versus one. The file keeps internal `TOKENS`/`BASE`/
+  `SHARED` section dividers so the old separation of concerns is still
+  legible — treat those sections as you would the old files:
+  - **TOKENS** — color, type, spacing, radius, motion variables, plus the
+    self-hosted `@font-face` declarations. Never hardcode a color or spacing
+    value a token already covers.
+  - **BASE** — element resets, `body`/`h1-h3`/`code`/`a` defaults, the site
+    header/footer/nav-dropdown.
+  - **SHARED** — components used (or reasonably likely to be reused) on more
+    than one page.
 - `css/<page-name>.css` — genuinely page-specific rules only: things that
   exist on exactly one page and aren't a variant of something already shared.
 
-Every page's `<head>` loads all three in that order:
+Every page's `<head>` loads both:
 
 ```html
-<link rel="stylesheet" href="css/tokens.css?v=N">
-<link rel="stylesheet" href="css/base.css?v=N">
-<link rel="stylesheet" href="css/shared.css?v=N">
+<link rel="stylesheet" href="css/core.css?v=N">
 <link rel="stylesheet" href="css/<page-name>.css?v=N">
 ```
 
 ## Before writing new CSS for a page
 
-1. **Check `shared.css` first.** If the thing you're building looks like a
-   card, a pill, a labeled section, a fact grid, or a fault/round timeline,
-   it probably already exists there.
+1. **Check `core.css`'s SHARED section first.** If the thing you're building
+   looks like a card, a pill, a labeled section, a fact grid, or a
+   fault/round timeline, it probably already exists there.
 2. **If it's close but not identical**, prefer a modifier class or an inline
    CSS-variable override (see `.triad-col.c1/.c2/.c3` for the pattern) over
    forking a near-duplicate rule into the page-specific file. A page file
    should not contain a rule that's 90% identical to one already in
-   `shared.css`.
+   `core.css`.
 3. **If you build something new that a second page later needs too**, move
-   it to `shared.css` at that point rather than copying it. This is the rule
+   it into `core.css`'s SHARED section at that point rather than copying it.
+   This is the rule
    that was being broken before this doc existed — three pages each
    hand-copied `.section`, `.btn-pill`, `.card-grid`, `.triad-grid`, and
    `.timeline` from memory, and the copies drifted (a missing `.section`
@@ -80,7 +85,8 @@ directly — see any existing page for the pattern.
 
 ## Component catalog
 
-Everything below lives in `shared.css`. One line each on when to reach for it.
+Everything below lives in `core.css`'s SHARED section. One line each on when
+to reach for it.
 
 | Component | Use for |
 |---|---|
@@ -117,10 +123,10 @@ Everything below lives in `shared.css`. One line each on when to reach for it.
 
 - Display/heading font is Fraunces (serif); body and UI text is Inter
   (sans); inline code/labels use IBM Plex Mono where present. All three are
-  self-hosted via `@font-face` declared once in `tokens.css`, pointing at
-  `fonts/*.woff2` — don't add a font import or a duplicate `@font-face` to
-  a page-specific file. Only the weights actually used site-wide are
-  included; check usage before adding a new weight.
+  self-hosted via `@font-face` declared once in `core.css`'s TOKENS section,
+  pointing at `fonts/*.woff2` — don't add a font import or a duplicate
+  `@font-face` to a page-specific file. Only the weights actually used
+  site-wide are included; check usage before adding a new weight.
 - `.eyebrow` (11px, uppercase, accent-colored, `--font-sans`) always
   precedes an `<h2>` (or the hero `<h1>`) inside `.section-heading`. It is
   the one piece of chrome every section on every page shares — if a new
@@ -130,7 +136,8 @@ Everything below lives in `shared.css`. One line each on when to reach for it.
 ## Spacing
 
 Spacing values come from the token scale (`--space-1` through `--space-9`) in
-`tokens.css` — never a bare pixel value in a component rule. `--space-9` is
+`core.css`'s TOKENS section — never a bare pixel value in a component rule.
+`--space-9` is
 the section-level rhythm unit (top/bottom section padding); `--space-3`
 through `--space-6` cover most internal component spacing. If a value you
 need isn't on the scale, that's worth a second look before reaching for an

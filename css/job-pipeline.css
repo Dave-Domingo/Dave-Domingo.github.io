@@ -1,5 +1,5 @@
 /* Job Application Pipeline case-study page — page-specific component styles.
-   Shared section/button/prose/card rules now live in shared.css.
+   Shared section/button/prose/card rules live in core.css's SHARED section.
    3-way-split sections (Control boundaries, Ownership) reuse the same 3-color
    triad (--cat-resume / --cat-coverletter / --cat-subcard) for visual
    consistency across the page, not because the semantics are identical. */
@@ -33,8 +33,8 @@
   margin-bottom: var(--space-6);
 }
 
-/* Diagram carousel: shared carousel/card/overlay rules now live in
-   shared.css. This section only holds the SVG-diagram-specific wrapper
+/* Diagram carousel: shared carousel/card/overlay rules live in core.css's
+   SHARED section. This section only holds the SVG-diagram-specific wrapper
    and the divider card, both unique to this page. */
 
 .card-svg-wrap {

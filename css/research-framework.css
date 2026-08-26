@@ -1,6 +1,6 @@
 /* Research-to-Artifact System — page-specific component styles.
-   Shared section/button/prose/card/triad/timeline rules now live in
-   shared.css; this file only holds what's genuinely unique to this page. */
+   Shared section/button/prose/card/triad/timeline rules live in core.css's
+   SHARED section; this file only holds what's genuinely unique to this page. */
 
 .hero h1 {
   max-width: 680px;
