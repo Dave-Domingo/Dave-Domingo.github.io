@@ -135,3 +135,35 @@ the section-level rhythm unit (top/bottom section padding); `--space-3`
 through `--space-6` cover most internal component spacing. If a value you
 need isn't on the scale, that's worth a second look before reaching for an
 arbitrary number.
+
+## Images
+
+Any raster image below the fold (i.e. not visible without scrolling) gets:
+
+```html
+<picture>
+  <source srcset="img/name.webp" type="image/webp">
+  <img src="img/name.jpg" alt="…" loading="lazy" decoding="async" width="W" height="H">
+</picture>
+```
+
+- `loading="lazy" decoding="async"` defers the fetch until the image is near
+  the viewport and keeps decoding off the main thread. Never add this to an
+  above-the-fold image (nothing on the site currently qualifies — if that
+  changes, that image should load eagerly instead).
+- `width`/`height` on the `<img>` must match the file's real aspect ratio.
+  They don't override the responsive CSS (`width: 100%; height: auto` still
+  controls the rendered size at every viewport) — they only let the browser
+  reserve the correct space before the file downloads, so nothing jumps once
+  it arrives.
+- Source the image at roughly the largest size it will actually render at
+  on the site (check the CSS, not the original upload), not the original
+  upload dimensions — this site has one photo and serving it at its
+  original 1920px upload width cost ~280KB for nothing, since it never
+  renders past ~900px anywhere on the site.
+- Ship a WebP `<source>` alongside a JPEG fallback in the `<img>` itself.
+  WebP is supported everywhere that matters for this site's audience and
+  the size difference is real (the one photo on the site went from 324KB to
+  a 48KB WebP at the same visual quality) — the JPEG fallback is essentially
+  free insurance, not a real cost, since browsers that support WebP never
+  fetch it.
