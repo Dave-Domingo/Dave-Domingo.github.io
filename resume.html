@@ -9,67 +9,21 @@
     <link rel="stylesheet" href="css/core.css?v=5">
   </head>
   <body>
+    <!-- Minimal bar, not the full site header/nav -- once someone's on the
+         resume page there's nothing else to navigate to from here, so the
+         full Work/Resume/Contact nav is pure overhead eating vertical
+         space (Dave's call, 2026-09-17). Just a way back to the site and
+         the download action. -->
+    <div style="display:flex; justify-content:space-between; align-items:center; gap: var(--space-3); padding: var(--space-2) var(--space-4); border-bottom: 1px solid var(--border);">
+      <a href="index.html" class="site-name" style="font-size:15px;">Dave Domingo</a>
+      <a href="resume.pdf" download class="btn-pill btn-pill-secondary">Download PDF</a>
+    </div>
 
-    <header class="site-header" id="top">
-      <div class="container site-header-inner">
-        <div class="site-identity">
-          <a href="index.html" class="site-name">Dave Domingo</a>
-          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span>Open to opportunities</span>
-        </div>
-        <nav class="site-nav" id="site-nav">
-          <div class="nav-dropdown">
-            <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" onclick="toggleWorkDropdown(this)">Work</button>
-            <div class="nav-dropdown-menu" hidden>
-              <a href="job-pipeline.html">Job Application Companion</a>
-              <a href="research-framework.html">Research-to-Artifact System</a>
-              <span class="dropdown-item-disabled">Governed AI Decision &amp; Execution Framework <span class="soon-tag">Soon</span></span>
-            </div>
-          </div>
-          <a href="resume.html">Resume</a>
-          <a href="contact.html">Contact</a>
-        </nav>
-        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation" onclick="toggleMobileNav(this)">
-          <span class="nav-toggle-bar"></span>
-          <span class="nav-toggle-bar"></span>
-          <span class="nav-toggle-bar"></span>
-        </button>
-      </div>
-    </header>
-
-    <main>
-    <section class="section" style="padding: var(--space-4) 0;">
-      <div class="container" style="max-width: 900px; margin: 0 auto;">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap: var(--space-3); margin-bottom: var(--space-3);">
-          <div class="eyebrow" style="margin: 0;">Resume</div>
-          <a href="resume.pdf" download class="btn-pill btn-pill-secondary">Download PDF</a>
-        </div>
-        <object data="resume.pdf" type="application/pdf" style="width:100%; height:calc(100vh - 150px); min-height:500px; border:1px solid var(--border); border-radius:8px;">
-          <p style="text-align:center; padding: var(--space-6);">
-            Your browser can't display the PDF inline.
-            <a href="resume.pdf">Open the resume directly</a> instead.
-          </p>
-        </object>
-      </div>
-    </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container site-footer-inner">
-        <div class="footer-links">
-          <a href="resume.html">Resume</a>
-          <a href="https://github.com/Dave-Domingo" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/in/davedomingoai" target="_blank" rel="noopener">LinkedIn</a>
-          <span class="footer-link-disabled">YouTube <span class="soon-tag">Soon</span></span>
-          <a href="contact.html">Contact</a>
-          <a href="#top" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">Back to top</a>
-        </div>
-        <div class="footer-meta">
-          <p>&copy; 2026 Dave Domingo</p>
-          <p>This page was coded with Claude Code.</p>
-        </div>
-      </div>
-    </footer>
-
-    <script src="js/nav.js?v=1"></script>
+    <object data="resume.pdf" type="application/pdf" style="display:block; width:100%; height:calc(100vh - 53px); border:none;">
+      <p style="text-align:center; padding: var(--space-6);">
+        Your browser can't display the PDF inline.
+        <a href="resume.pdf">Open the resume directly</a> instead.
+      </p>
+    </object>
   </body>
 </html>
