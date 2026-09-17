@@ -43,12 +43,12 @@
           <div class="eyebrow" style="margin: 0;">Resume</div>
           <a href="resume.pdf" download class="btn-pill btn-pill-secondary">Download PDF</a>
         </div>
-        <object data="resume.pdf" type="application/pdf" style="width:100%; height:calc(100vh - 150px); min-height:500px; border:1px solid var(--border); border-radius:8px;">
+        <canvas id="resume-canvas" style="width:100%; display:block; border:1px solid var(--border); border-radius:8px;"></canvas>
+        <noscript>
           <p style="text-align:center; padding: var(--space-6);">
-            Your browser can't display the PDF inline.
-            <a href="resume.pdf">Open the resume directly</a> instead.
+            <a href="resume.pdf">Open the resume PDF directly</a>.
           </p>
-        </object>
+        </noscript>
       </div>
     </section>
     </main>
@@ -71,5 +71,7 @@
     </footer>
 
     <script src="js/nav.js?v=1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="js/resume-viewer.js?v=1"></script>
   </body>
 </html>
