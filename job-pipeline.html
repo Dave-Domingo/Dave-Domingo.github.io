@@ -6,7 +6,7 @@
     <title>Job Application Companion | Dave Domingo</title>
     <meta name="description" content="How an AI job application companion actually works. Automated resume and cover letter generation with human-in-the-loop review, live and in active use.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="css/core.css?v=1">
+    <link rel="stylesheet" href="css/core.css?v=5">
     <link rel="stylesheet" href="css/job-pipeline.css?v=5">
   </head>
   <body>
@@ -17,7 +17,7 @@
           <a href="index.html" class="site-name">Dave Domingo</a>
           <span class="status-pill"><span class="status-dot" aria-hidden="true"></span>Open to opportunities</span>
         </div>
-        <nav class="site-nav">
+        <nav class="site-nav" id="site-nav">
           <div class="nav-dropdown">
             <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" onclick="toggleWorkDropdown(this)">Work</button>
             <div class="nav-dropdown-menu" hidden>
@@ -26,8 +26,14 @@
               <span class="dropdown-item-disabled">Governed AI Decision &amp; Execution Framework <span class="soon-tag">Soon</span></span>
             </div>
           </div>
+          <a href="resume.html">Resume</a>
           <a href="contact.html">Contact</a>
         </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation" onclick="toggleMobileNav(this)">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
       </div>
     </header>
 
@@ -58,7 +64,7 @@
         <div class="prose-block">
           <div class="eyebrow">Why this exists</div>
           <h2>Twelve years without a resume</h2>
-          <p>I used AI in various capacities for real estate and investing for two years, namely to help with marketing and sales. Eventually, I started preferring the AI implementation work over real estate and decided I wanted to find a job that focuses on AI. The problem was that after 12 years of total employment, I had never needed a resume or cover letter. Furthermore, I was doing a career pivot, which meant my work required translation.</p>
+          <p>I used AI in various capacities for real estate and investing for three years, namely to help with marketing and sales. Eventually, I started preferring the AI implementation work over real estate and decided I wanted to find a job that focuses on AI. The problem was that after 12 years of total employment, I had never needed a resume or cover letter. Furthermore, I was doing a career pivot, which meant my work required translation.</p>
           <p>After 6-8 weeks of using ChatGPT to help refine my resume, I decided that I needed to solve for scale. Around that time, I saw some unsettling data from LinkedIn about job application conversion rates, and at my current volume it could reasonably take 10+ months. If I could scale the repeat labor, I would recapture time that would allow me to focus on improving my position (certifications, projects, etc.) and leaning further into the human element, like networking or getting involved in the community. Slowly my personal use evolved to a live deployment for my friend Grace, who was also pursuing a job transition while working full time.</p>
         </div>
       </div>
@@ -786,6 +792,7 @@
     <footer class="site-footer">
       <div class="container site-footer-inner">
         <div class="footer-links">
+          <a href="resume.html">Resume</a>
           <a href="https://github.com/Dave-Domingo" target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/davedomingoai" target="_blank" rel="noopener">LinkedIn</a>
           <span class="footer-link-disabled">YouTube <span class="soon-tag">Soon</span></span>
@@ -800,32 +807,8 @@
     </footer>
 
     <script src="js/carousel.js?v=3"></script>
+    <script src="js/nav.js?v=1"></script>
     <script>
-      function toggleWorkDropdown(btn) {
-        var menu = btn.nextElementSibling;
-        var isOpen = !menu.hidden;
-        closeAllDropdowns();
-        if (!isOpen) {
-          menu.hidden = false;
-          btn.setAttribute('aria-expanded', 'true');
-        }
-      }
-
-      function closeAllDropdowns() {
-        document.querySelectorAll('.nav-dropdown-menu').forEach(function(menu) {
-          menu.hidden = true;
-          menu.previousElementSibling.setAttribute('aria-expanded', 'false');
-        });
-      }
-
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.nav-dropdown')) closeAllDropdowns();
-      });
-
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeAllDropdowns();
-      });
-
       function alignTriadWhys() {
         document.querySelectorAll('.triad-grid').forEach(function(row) {
           var whys = row.querySelectorAll('.why');

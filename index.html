@@ -6,7 +6,7 @@
     <title>Dave Domingo</title>
     <meta name="description" content="Dave Domingo's Applied AI portfolio, featuring real systems in active use: a job application companion and a repeatable research-to-artifact framework.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="css/core.css?v=1">
+    <link rel="stylesheet" href="css/core.css?v=5">
     <link rel="stylesheet" href="css/homepage.css?v=13">
   </head>
   <body>
@@ -16,7 +16,7 @@
           <a href="index.html" class="site-name">Dave Domingo</a>
           <span class="status-pill"><span class="status-dot" aria-hidden="true"></span>Open to opportunities</span>
         </div>
-        <nav class="site-nav">
+        <nav class="site-nav" id="site-nav">
           <div class="nav-dropdown">
             <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" onclick="toggleWorkDropdown(this)">Work</button>
             <div class="nav-dropdown-menu" hidden>
@@ -25,8 +25,14 @@
               <span class="dropdown-item-disabled">Governed AI Decision &amp; Execution Framework <span class="soon-tag">Soon</span></span>
             </div>
           </div>
+          <a href="resume.html">Resume</a>
           <a href="contact.html">Contact</a>
         </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation" onclick="toggleMobileNav(this)">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
       </div>
     </header>
 
@@ -37,6 +43,7 @@
         <h1>Applied AI Solutions &amp; Workflow Design</h1>
         <p class="operating-promise">I apply human-centered AI to the highest-leverage problems, helping people operate more effectively and reclaim time.</p>
         <div class="btn-row">
+          <a href="resume.html" class="btn-pill btn-pill-secondary">Resume</a>
           <a href="contact.html" class="btn-pill btn-pill-primary">Contact</a>
         </div>
       </div>
@@ -121,19 +128,19 @@
     <section class="section">
       <div class="container">
         <div class="prose-block">
-          <h2 class="eyebrow">Background Bridge</h2>
-          <p>After two years of using AI in real estate, and coming from a background as a military officer, I realized the work I enjoyed most was being a strategic operator who builds solutions. AI is becoming more accessible by the day, and I want to help extend that into business and personal contexts alike.</p>
+          <h2 class="eyebrow">Why I Do This Work</h2>
+          <p>After three years of using AI in real estate, and coming from a background as a military officer, I realized the work I enjoyed most was being a strategic operator who builds solutions. AI is becoming more accessible by the day, and I want to help extend that into business and personal contexts alike.</p>
           <p class="bridge-note">Full history lives on LinkedIn.</p>
         </div>
       </div>
     </section>
 
-    <!-- External / Third-Party Evidence -->
+    <!-- Published Elsewhere -->
     <section class="section section-tint">
       <div class="container">
         <div class="evidence-row">
           <div class="evidence-col">
-            <h2 class="eyebrow">External / Third-Party Evidence</h2>
+            <h2 class="eyebrow">Published Elsewhere</h2>
             <p>Published perspective on how AI is reshaping the job search and hiring process.</p>
             <p class="evidence-citation">All Things Open, August 2026 &middot; <a href="https://allthingsopen.org/articles/state-of-tech-ai-jobs-three-questions" target="_blank" rel="noopener">Read the article</a></p>
           </div>
@@ -153,6 +160,7 @@
     <footer class="site-footer">
       <div class="container site-footer-inner">
         <div class="footer-links">
+          <a href="resume.html">Resume</a>
           <a href="https://github.com/Dave-Domingo" target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/davedomingoai" target="_blank" rel="noopener">LinkedIn</a>
           <span class="footer-link-disabled">YouTube <span class="soon-tag">Soon</span></span>
@@ -166,31 +174,6 @@
       </div>
     </footer>
 
-    <script>
-      function toggleWorkDropdown(btn) {
-        var menu = btn.nextElementSibling;
-        var isOpen = !menu.hidden;
-        closeAllDropdowns();
-        if (!isOpen) {
-          menu.hidden = false;
-          btn.setAttribute('aria-expanded', 'true');
-        }
-      }
-
-      function closeAllDropdowns() {
-        document.querySelectorAll('.nav-dropdown-menu').forEach(function(menu) {
-          menu.hidden = true;
-          menu.previousElementSibling.setAttribute('aria-expanded', 'false');
-        });
-      }
-
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.nav-dropdown')) closeAllDropdowns();
-      });
-
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeAllDropdowns();
-      });
-    </script>
+    <script src="js/nav.js?v=1"></script>
   </body>
 </html>

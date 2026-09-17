@@ -6,7 +6,7 @@
     <title>Research-to-Artifact System | Dave Domingo</title>
     <meta name="description" content="A repeatable framework for turning ambiguous questions into decision-ready evidence, covering the operating model, method selection, and real studies.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="css/core.css?v=1">
+    <link rel="stylesheet" href="css/core.css?v=5">
     <link rel="stylesheet" href="css/research-framework.css?v=10">
   </head>
   <body>
@@ -17,7 +17,7 @@
           <a href="index.html" class="site-name">Dave Domingo</a>
           <span class="status-pill"><span class="status-dot" aria-hidden="true"></span>Open to opportunities</span>
         </div>
-        <nav class="site-nav">
+        <nav class="site-nav" id="site-nav">
           <div class="nav-dropdown">
             <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" onclick="toggleWorkDropdown(this)">Work</button>
             <div class="nav-dropdown-menu" hidden>
@@ -26,8 +26,14 @@
               <span class="dropdown-item-disabled">Governed AI Decision &amp; Execution Framework <span class="soon-tag">Soon</span></span>
             </div>
           </div>
+          <a href="resume.html">Resume</a>
           <a href="contact.html">Contact</a>
         </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation" onclick="toggleMobileNav(this)">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
       </div>
     </header>
 
@@ -525,6 +531,7 @@
     <footer class="site-footer">
       <div class="container site-footer-inner">
         <div class="footer-links">
+          <a href="resume.html">Resume</a>
           <a href="https://github.com/Dave-Domingo" target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/davedomingoai" target="_blank" rel="noopener">LinkedIn</a>
           <span class="footer-link-disabled">YouTube <span class="soon-tag">Soon</span></span>
@@ -539,31 +546,6 @@
     </footer>
 
     <script src="js/carousel.js?v=3"></script>
-    <script>
-      function toggleWorkDropdown(btn) {
-        var menu = btn.nextElementSibling;
-        var isOpen = !menu.hidden;
-        closeAllDropdowns();
-        if (!isOpen) {
-          menu.hidden = false;
-          btn.setAttribute('aria-expanded', 'true');
-        }
-      }
-
-      function closeAllDropdowns() {
-        document.querySelectorAll('.nav-dropdown-menu').forEach(function(menu) {
-          menu.hidden = true;
-          menu.previousElementSibling.setAttribute('aria-expanded', 'false');
-        });
-      }
-
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.nav-dropdown')) closeAllDropdowns();
-      });
-
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeAllDropdowns();
-      });
-    </script>
+    <script src="js/nav.js?v=1"></script>
   </body>
 </html>
